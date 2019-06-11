@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "name": "nextjs",
+  "alias": "www.artisanfront.com",
+  "builds": [{ "src": "package.json", "use": "@now/next" }],
+  "routes": [
+    { "src": "/", "status": 301, "headers": { "Location": "/en/" } },
+    { "src": "/en/", "dest": "/index" },
+    { "src": "/es/", "dest": "/index" },
+    {
+      "src": "/es/articulo/(?<name>[^/]+)$",
+      "dest": "/article?name=$name&lang=es"
+    },
+    {
+      "src": "/en/article/(?<name>[^/]+)$",
+      "dest": "/article?name=$name&lang=en"
+    }
+  ]
+}

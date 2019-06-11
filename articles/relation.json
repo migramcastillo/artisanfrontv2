@@ -1,0 +1,14 @@
+{
+  "en": {
+    "hello-world": {
+      "title": "Hello World",
+      "description": "A Hello World site"
+    }
+  },
+  "es": {
+    "hola-mundo": {
+      "title": "Hola mundo",
+      "description": "Un sitio hola mundo"
+    }
+  }
+}
