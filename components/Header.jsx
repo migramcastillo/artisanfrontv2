@@ -1,11 +1,14 @@
 const Header = props => {
   return (
-    <header className="bg-white text-gray-800 py-1 text-center">
+    <header className="header bg-white text-gray-800 py-1 text-center">
       <nav>
-        ARTISAN
-        <br />
-        FRONT
+        <img className="logotipo" src="/static/logo_artisanfront_min.svg" />
       </nav>
+      <style jsx>{`
+        .header > nav >.logotipo{
+          width: 200px;
+        }
+      `}</style>
     </header>
   );
 };
