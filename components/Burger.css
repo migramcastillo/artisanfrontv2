@@ -1,5 +1,5 @@
 .burger {
-  position: sticky;
+  position: fixed;
   z-index: 30;
   bottom: 5px;
   left: 5%;
@@ -13,4 +13,10 @@
 
 .burger > .option > span {
   @apply .text-gray-700 .font-medium;
+}
+
+@media (min-width: 1024px) {
+  .burger {
+    display: none;
+  }
 }
