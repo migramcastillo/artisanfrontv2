@@ -4,10 +4,10 @@ import Footer from '../components/Footer';
 import '../assets/tailwind.css';
 import Burger from '../components/Burger';
 
-const ArtisanFront = props => {
+const ArtisanFront = ({ lang, hreflangs, ...props }) => {
   return (
     <>
-      <Header />
+      <Header lang={lang} hreflangs={hreflangs} />
       <main className="min-h-screen">{props.children}</main>
       <Footer />
       <Burger />
