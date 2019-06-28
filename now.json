@@ -4,23 +4,47 @@
   "alias": "artisanfront.com",
   "builds": [{ "src": "package.json", "use": "@now/next" }],
   "routes": [
+    { "src": "/", "status": 301, "headers": { "Location": "/en" } },
+    { "src": "/en", "dest": "/index?lang=en" },
+    { "src": "/en/about", "dest": "/about?lang=en" },
+    { "src": "/en/articles", "dest": "/list_articles?lang=en" },
+    { "src": "/en/courses", "dest": "/list_courses?lang=en" },
     {
-      "src": "/(.*)",
-      "status": 301,
-      "headers": {
-        "Location": "https://www.artisanfront.com/$1"
-      }
-    },
-    { "src": "/", "status": 301, "headers": { "Location": "/en/" } },
-    { "src": "/en/", "dest": "/index?lang=en" },
-    { "src": "/es/", "dest": "/index?lang=es" },
-    {
-      "src": "/es/articulo/(?<name>[^/]+)$",
-      "dest": "/article?name=$name&lang=es"
+      "src": "/en/privacy",
+      "dest": "/privacy?lang=en"
     },
     {
-      "src": "/en/article/(?<name>[^/]+)$",
+      "src": "/en/courses/(?<name>[^/]+)$",
+      "dest": "/course?name=$name&lang=en"
+    },
+    {
+      "src": "/en/articles/(?<name>[^/]+)$",
       "dest": "/article?name=$name&lang=en"
+    },
+    { "src": "/es", "dest": "/index?lang=es" },
+    {
+      "src": "/es/acerca-de",
+      "dest": "/about?lang=es"
+    },
+    {
+      "src": "/es/articulos",
+      "dest": "/list_articles?lang=es"
+    },
+    {
+      "src": "/es/cursos",
+      "dest": "/list_courses?lang=es"
+    },
+    {
+      "src": "/es/aviso-de-privacidad",
+      "dest": "/privacy?lang=es"
+    },
+    {
+      "src": "/es/cursos/(?<name>[^/]+)$",
+      "dest": "/course?name=$name&lang=es"
+    },
+    {
+      "src": "/es/articulos/(?<name>[^/]+)$",
+      "dest": "/article?name=$name&lang=es"
     }
   ]
 }

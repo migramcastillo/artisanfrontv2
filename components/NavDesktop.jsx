@@ -1,34 +1,30 @@
-import DesktopLink from './DesktopLink/DesktopLink';
-import Link from 'next/link';
-
-const t = {
-  en: {
-    home: 'Home',
-    articles: 'Articles',
-    courses: 'Courses',
-    about: 'About Us'
-  },
-  es: {
-    home: 'Inicio',
-    articles: 'Articulos',
-    courses: 'Cursos',
-    about: 'Acerca de'
-  }
-};
+import DesktopLink from "./DesktopLink/DesktopLink";
+import Link from "next/link";
+import { links } from "../helpers/locales";
 
 const NavDesktop = ({ lang, hreflangs, ...props }) => {
+  const t = lang === "es" ? links["es"] : links["en"];
+
   return (
     <nav className="hidden lg:flex justify-end w-2/3 items-center">
-      <DesktopLink>{t[lang]['home']}</DesktopLink>
-      <DesktopLink>{t[lang]['articles']}</DesktopLink>
-      <DesktopLink>{t[lang]['courses']}</DesktopLink>
-      <DesktopLink>{t[lang]['about']}</DesktopLink>
+      <DesktopLink as={t.home.link} href={t.home.page}>
+        {t.home.name}
+      </DesktopLink>
+      <DesktopLink as={t.articles.link} href={t.articles.page}>
+        {t.articles.name}
+      </DesktopLink>
+      <DesktopLink as={t.courses.link} href={t.courses.page}>
+        {t.courses.name}
+      </DesktopLink>
+      <DesktopLink as={t.about.link} href={t.about.page}>
+        {t.about.name}
+      </DesktopLink>
       <Link>
         <a
-          href={lang === 'es' ? hreflangs['en'] : hreflangs['es']}
+          href={lang === "es" ? hreflangs["en"] : hreflangs["es"]}
           className="font-semibold mx-8 bg-blue-600 text-center p-2 rounded text-white shadow cursor-pointer"
         >
-          {lang === 'es' ? 'English' : 'Español'}
+          {lang === "es" ? "English" : "Español"}
         </a>
       </Link>
     </nav>

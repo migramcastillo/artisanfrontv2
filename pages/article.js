@@ -1,64 +1,61 @@
 import { Component } from "react";
+import ArtisanFront from "../layouts/ArtisanFront";
+import { MDXProvider } from "@mdx-js/react";
 import Link from "next/link";
 import Header from "../components/Header";
 import Error from "./_error";
 import relation from "../articles/relation.json";
-import { MDXProvider } from "@mdx-js/react";
 import CodeBlock from "../components/CodeBlock";
 
-class ArticlePage extends Component {
-  static async getInitialProps({ query, res }) {
-    const isServer = typeof window === "undefined";
+const ArticlePage = props => {
+  const { article, Content, lang, hreflangs } = props;
+  if (!article) return <Error status={404} />;
 
-    const { name, lang } = query;
+  const components = {
+    pre: props => <div {...props} />,
+    code: CodeBlock
+  };
 
-    const article = relation[lang][name];
+  return (
+    <ArtisanFront lang={lang} hreflangs={hreflangs}>
+      <article className="container mx-auto py-4 article">
+        <MDXProvider components={components}>
+          <Content />
+        </MDXProvider>
+      </article>
+    </ArtisanFront>
+  );
+};
 
-    if (!article && res) res.statusCode = 404;
+ArticlePage.getInitialProps = async ({ query, res }) => {
+  const { name, lang } = query;
 
-    let Content = null;
-    if (article) {
-      Content = await import(`../articles/${lang}/${name}.mdx`);
-      Content = Content.default;
-    }
+  const article = relation[lang][name];
 
-    return {
-      isServer,
-      name,
-      article,
-      Content
-    };
+  if (!article && res) res.statusCode = 404;
+
+  let Content = null;
+  if (article) {
+    Content = await import(`../articles/${lang}/${name}.mdx`);
+    Content = Content.default;
   }
 
-  render() {
-    const { article, Content } = this.props;
-    if (!article) return <Error status={404} />;
-
-    const components = {
-      pre: props => <div {...props} />,
-      code: CodeBlock
-    };
-
-    return (
-      <main>
-        <Header />
-        <section>
-          <p>
-            This is another page of the SSR example, you accessed it
-            {" " + this.props.name}
-            <strong>{this.props.isServer ? "server" : "client"} side</strong>.
-          </p>
-          <p>You can reload to see how the page change.</p>
-          <Link href="/">
-            <a>Go to Home</a>
-          </Link>
-          <MDXProvider components={components}>
-            <Content />
-          </MDXProvider>
-        </section>
-      </main>
-    );
+  let hreflangs = { es: "", en: "" };
+  if (lang === "es") {
+    hreflangs.es = "/es/articulos/" + name;
+    hreflangs.en = "/en/articles/" + article.hreflang;
+  } else {
+    hreflangs.es = "/es/articulos/" + article.hreflang;
+    hreflangs.en = "/en/articles/" + name;
   }
-}
+
+  return {
+    name,
+    article,
+    Content,
+    lang,
+    hreflangs
+  };
+};
 
 export default ArticlePage;
