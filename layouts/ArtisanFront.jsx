@@ -1,15 +1,15 @@
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
-import '../assets/tailwind.css';
-import Burger from '../components/Burger';
+import "../assets/tailwind.css";
+import Burger from "../components/Burger";
 
 const ArtisanFront = ({ lang, hreflangs, ...props }) => {
   return (
     <>
       <Header lang={lang} hreflangs={hreflangs} />
       <main className="min-h-screen">{props.children}</main>
-      <Footer />
+      <Footer lang={lang} hreflangs={hreflangs} />
       <Burger />
     </>
   );

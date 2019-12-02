@@ -1,16 +1,17 @@
-import { library, config } from '@fortawesome/fontawesome-svg-core';
+import { library, config } from "@fortawesome/fontawesome-svg-core";
 import {
   faHome,
   faBook,
   faInfo,
   faGraduationCap,
-  faLanguage
-} from '@fortawesome/free-solid-svg-icons';
+  faLanguage,
+  faLink
+} from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
   faTwitter,
   faYoutube
-} from '@fortawesome/free-brands-svg-icons';
+} from "@fortawesome/free-brands-svg-icons";
 
 library.add(
   faHome,
@@ -20,5 +21,6 @@ library.add(
   faLanguage,
   faGithub,
   faTwitter,
-  faYoutube
+  faYoutube,
+  faLink
 );

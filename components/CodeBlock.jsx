@@ -12,7 +12,10 @@ export default ({ children, className }) => {
       language={language}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={className} style={{ ...style, padding: "15px" }}>
+        <pre
+          className={"rounded shadow " + className}
+          style={{ ...style, padding: "15px" }}
+        >
           {tokens.map((line, i) => (
             <div key={i} {...getLineProps({ line, key: i })}>
               {line.map((token, key) => (
