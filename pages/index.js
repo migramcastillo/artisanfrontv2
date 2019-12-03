@@ -1,11 +1,16 @@
-import ArtisanFront from '../layouts/ArtisanFront';
-import HomeArticles from '../components/HomeArticles/HomeArticles';
-import HomeButton from '../components/HomeButton/HomeButton';
-import HomeIntro from '../components/HomeIntro/HomeIntro';
+import Head from "next/head";
+import ArtisanFront from "../layouts/ArtisanFront";
+import HomeArticles from "../components/HomeArticles/HomeArticles";
+import HomeButton from "../components/HomeButton/HomeButton";
+import HomeIntro from "../components/HomeIntro/HomeIntro";
+import WithLanguage from "../hoc/with-language";
 
-const Index = ({ lang, hreflangs, ...props }) => {
+export const HomePage = ({ lang, hreflangs, ...props }) => {
   return (
     <ArtisanFront lang={lang} hreflangs={hreflangs}>
+      <Head>
+        <title>Artisan Front</title>
+      </Head>
       <div className="text-center px-2 py-4 bg-white">
         <HomeIntro lang={lang} />
       </div>
@@ -26,13 +31,10 @@ const Index = ({ lang, hreflangs, ...props }) => {
   );
 };
 
-Index.getInitialProps = async ({ query, res }) => {
-  const { lang } = query;
-
+HomePage.getInitialProps = async ctx => {
   return {
-    lang,
-    hreflangs: { es: '/es/', en: '/en/' }
+    hreflangs: { es: "/", en: "/home" }
   };
 };
 
-export default Index;
+export default WithLanguage(HomePage, "es");

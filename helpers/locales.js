@@ -1,6 +1,6 @@
 export const links = {
   en: {
-    home: { name: "Home", link: "/en", page: "index?lang=en" },
+    home: { name: "Home", link: "/home", page: "home" },
     articles: {
       name: "Articles",
       link: "/en/articles",
@@ -11,11 +11,11 @@ export const links = {
       link: "/en/courses",
       page: "list_courses?lang=en"
     },
-    about: { name: "About Us", link: "/en/about", page: "about?lang=en" },
+    about: { name: "About Us", link: "/about", page: "about" },
     privacy: { name: "Privacy", link: "/en/privacy", page: "privacy?lang=en" }
   },
   es: {
-    home: { name: "Inicio", link: "/es", page: "index?lang=es" },
+    home: { name: "Inicio", link: "/", page: "index" },
     articles: {
       name: "Articulos",
       link: "/es/articulos",
@@ -26,7 +26,7 @@ export const links = {
       link: "/es/cursos",
       page: "list_courses?lang=es"
     },
-    about: { name: "Acerca", link: "/es/acerca-de", page: "about?lang=es" },
+    about: { name: "Acerca", link: "/acerca-de", page: "acerca-de" },
     privacy: {
       name: "Privacidad",
       link: "/es/aviso-de-privacidad",

@@ -1,11 +1,13 @@
-import { Component } from "react";
-import Link from "next/link";
-import Header from "../components/Header";
+import Head from "next/head";
 import ArtisanFront from "../layouts/ArtisanFront";
+import WithLanguage from "../hoc/with-language";
 
-const AboutPage = ({ lang, hreflangs }) => {
+export const AboutPage = ({ lang, hreflangs }) => {
   return (
     <ArtisanFront lang={lang} hreflangs={hreflangs}>
+      <Head>
+        <title>Acerca de Artisan Front</title>
+      </Head>
       <div className="container mx-auto py-4">
         <h1 className="text-3xl text-semibold text-gray-900">
           {lang === "es" ? "Acerca de Artisan Front" : "About Artisan Front"}
@@ -23,13 +25,10 @@ const AboutPage = ({ lang, hreflangs }) => {
     </ArtisanFront>
   );
 };
-AboutPage.getInitialProps = async ({ query, res }) => {
-  const { lang } = query;
-
+AboutPage.getInitialProps = async ctx => {
   return {
-    lang,
-    hreflangs: { es: "/es/acerca-de", en: "/en/about" }
+    hreflangs: { es: "/acerca-de", en: "/about" }
   };
 };
 
-export default AboutPage;
+export default WithLanguage(AboutPage, "en");
