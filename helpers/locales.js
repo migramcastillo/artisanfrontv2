@@ -1,36 +1,40 @@
 export const links = {
   en: {
-    home: { name: "Home", link: "/home", page: "home" },
+    home: { name: "Home", link: "/english", page: "home" },
     articles: {
       name: "Articles",
-      link: "/en/articles",
-      page: "list_articles?lang=en"
+      link: "/english/articles",
+      page: "english/articles"
     },
     courses: {
       name: "Courses",
-      link: "/en/courses",
-      page: "list_courses?lang=en"
+      link: "/english/courses",
+      page: "english/courses"
     },
-    about: { name: "About Us", link: "/about", page: "about" },
-    privacy: { name: "Privacy", link: "/en/privacy", page: "privacy?lang=en" }
+    about: { name: "About Us", link: "/english/about", page: "english/about" },
+    privacy: {
+      name: "Privacy",
+      link: "/english/privacy-notice",
+      page: "english/privacy-notice"
+    }
   },
   es: {
     home: { name: "Inicio", link: "/", page: "index" },
     articles: {
       name: "Articulos",
-      link: "/es/articulos",
-      page: "list_articles?lang=es"
+      link: "/articulos",
+      page: "articulos"
     },
     courses: {
       name: "Cursos",
-      link: "/es/cursos",
-      page: "list_courses?lang=es"
+      link: "/cursos",
+      page: "cursos"
     },
     about: { name: "Acerca", link: "/acerca-de", page: "acerca-de" },
     privacy: {
       name: "Privacidad",
-      link: "/es/aviso-de-privacidad",
-      page: "privacy?lang=es"
+      link: "/aviso-de-privacidad",
+      page: "aviso-de-privacidad"
     }
   }
 };

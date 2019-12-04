@@ -3,7 +3,7 @@ import Link from "next/link";
 import { links } from "../helpers/locales";
 
 const NavDesktop = ({ lang, hreflangs, ...props }) => {
-  const t = lang === "es" ? links["es"] : links["en"];
+  const t = lang === "es" ? links.es : links.en;
 
   return (
     <nav className="hidden lg:flex justify-end w-2/3 items-center">
@@ -19,11 +19,8 @@ const NavDesktop = ({ lang, hreflangs, ...props }) => {
       <DesktopLink as={t.about.link} href={t.about.page}>
         {t.about.name}
       </DesktopLink>
-      <Link>
-        <a
-          href={lang === "es" ? hreflangs["en"] : hreflangs["es"]}
-          className="font-semibold mx-8 bg-blue-600 text-center p-2 rounded text-white shadow cursor-pointer"
-        >
+      <Link href={lang === "es" ? hreflangs["en"] : hreflangs["es"]}>
+        <a className="font-semibold mx-8 bg-blue-600 text-center p-2 rounded text-white shadow cursor-pointer">
           {lang === "es" ? "English" : "Español"}
         </a>
       </Link>

@@ -1,6 +1,6 @@
 import Head from "next/head";
-import ArtisanFront from "../layouts/ArtisanFront";
-import WithLanguage from "../hoc/with-language";
+import ArtisanFront from "../../layouts/ArtisanFront";
+import WithLanguage from "../../hoc/with-language";
 
 export const AboutPage = ({ lang, hreflangs }) => {
   return (
@@ -27,7 +27,7 @@ export const AboutPage = ({ lang, hreflangs }) => {
 };
 AboutPage.getInitialProps = async ctx => {
   return {
-    hreflangs: { es: "/acerca-de", en: "/about" }
+    hreflangs: { es: "/acerca-de", en: "/english/about" }
   };
 };
 

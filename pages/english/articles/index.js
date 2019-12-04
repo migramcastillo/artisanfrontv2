@@ -1,7 +1,8 @@
-import ArtisanFront from "../layouts/ArtisanFront";
-import ArticleCard from "../components/ArticleCard/ArticleCard";
+import ArtisanFront from "../../../layouts/ArtisanFront";
+import ArticleCard from "../../../components/ArticleCard/ArticleCard";
+import WithLanguage from "../../../hoc/with-language";
 
-const ListArticles = ({ lang, hreflangs, ...props }) => {
+export const ArticlesMainPage = ({ lang, hreflangs, ...props }) => {
   return (
     <ArtisanFront lang={lang} hreflangs={hreflangs}>
       <div className="container mx-auto py-2">
@@ -40,13 +41,10 @@ const ListArticles = ({ lang, hreflangs, ...props }) => {
   );
 };
 
-ListArticles.getInitialProps = async ({ query, res }) => {
-  const { lang } = query;
-
+ArticlesMainPage.getInitialProps = async ctx => {
   return {
-    lang,
-    hreflangs: { es: "/es/articulos", en: "/en/articles" }
+    hreflangs: { es: "/articulos", en: "/english/articles" }
   };
 };
 
-export default ListArticles;
+export default WithLanguage(ArticlesMainPage, "en");
