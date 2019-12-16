@@ -1,0 +1,36 @@
+{
+  "hello-world": {
+    "timestamp": "2019-12-01",
+    "en": {
+      "slug": "hello-world",
+      "file": "hello-world",
+      "title": "Hello World",
+      "description": "A Hello World site",
+      "hreflang": "hola-mundo"
+    },
+    "es": {
+      "slug": "hola-mundo",
+      "file": "hola-mundo",
+      "title": "Hola mundo",
+      "description": "Un sitio hola mundo",
+      "hreflang": "hello-world"
+    }
+  },
+  "tailwind-with-nextjs": {
+    "timestamp": "2019-12-05",
+    "en": {
+      "slug": "setup-tailwind-with-nextjs",
+      "file": "tailwind-with-nextjs",
+      "title": "Setup Tailwind CSS with NextJS",
+      "description": "In this article you'll learn how to setup Tailwind Utilitiy-first CSS framework with NextJS",
+      "hreflang": "configurar-tailwind-con-nextjs"
+    },
+    "es": {
+      "slug": "configurar-tailwind-con-nextjs",
+      "file": "tailwind-con-nextjs",
+      "title": "Configurar Tailwind con NextJS",
+      "description": "En este articulo aprenderas a configurar Tailwind CSS, un framework utility-first con NextJS",
+      "hreflang": "setup-tailwind-with-nextjs"
+    }
+  }
+}

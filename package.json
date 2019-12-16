@@ -4,12 +4,18 @@
     "dev": "next dev",
     "now-build": "next build"
   },
+  "engines": {
+    "node": ">=12"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-brands-svg-icons": "^5.11.2",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@fortawesome/react-fontawesome": "^0.1.7",
+    "axios": "^0.19.0",
+    "dayjs": "^1.8.17",
     "express": "^4.17.1",
+    "faunadb": "^2.10.0",
     "next": "^9.1.4",
     "prism-react-renderer": "^1.0.2",
     "react": "^16.12.0",

@@ -20,7 +20,7 @@ const NavDesktop = ({ lang, hreflangs, ...props }) => {
         {t.about.name}
       </DesktopLink>
       <Link href={lang === "es" ? hreflangs["en"] : hreflangs["es"]}>
-        <a className="font-semibold mx-8 bg-blue-600 text-center p-2 rounded text-white shadow cursor-pointer">
+        <a className="font-semibold mx-8 bg-green-500 text-center p-2 rounded text-white shadow cursor-pointer">
           {lang === "es" ? "English" : "Español"}
         </a>
       </Link>

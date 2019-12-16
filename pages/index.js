@@ -1,22 +1,22 @@
 import Head from "next/head";
 import ArtisanFront from "../layouts/ArtisanFront";
 import HomeArticles from "../components/HomeArticles/HomeArticles";
-import HomeButton from "../components/HomeButton/HomeButton";
-import HomeIntro from "../components/HomeIntro/HomeIntro";
 import WithLanguage from "../hoc/with-language";
+import ViewAllButton from "../components/view-all-button";
 import NextDocsButton from "../components/next-docs-button/next-docs-button";
+import { getLastArticles } from "../helpers/get-articles";
+import i18n from "../locales/home.i18n";
 
-export const HomePage = ({ lang, hreflangs, ...props }) => {
+export const HomePage = ({ lang, labels, hreflangs, articles, ...props }) => {
   return (
     <ArtisanFront lang={lang} hreflangs={hreflangs}>
       <Head>
-        <title>
-          Artisan Front - Artículos y cursos gratis de NextJS y NodeJS
-        </title>
+        <title>Artisan Front - {labels.title}</title>
+        <meta name="description" content={labels.description} />
       </Head>
       <div className="container mx-auto p-2">
         <h1 className="text-center text-3xl font-semibold text-gray-900 my-4">
-          Articulos y cursos gratis de NextJS, NodeJS y más
+          {labels.h1}
         </h1>
         {lang === "es" && (
           <div className="text-center py-4">
@@ -24,24 +24,37 @@ export const HomePage = ({ lang, hreflangs, ...props }) => {
           </div>
         )}
         <h2 className="text-2xl text-center text-gray-800 font-semibold my-2">
-          Cursos completos gratis
+          {labels.h2Courses}
         </h2>
-        <HomeArticles />
-        <HomeButton />
+        <HomeArticles articles={articles} />
+        <ViewAllButton
+          lang={lang}
+          href={lang === "es" ? "/cursos" : "/english/courses"}
+        />
 
-        <h1 className="text-2xl text-center text-gray-800 font-bold mb-6 mt-12">
-          Latest articles
-        </h1>
-        <HomeArticles />
-        <HomeButton />
+        <h2 className="text-2xl text-center text-gray-800 font-bold mb-6 mt-12">
+          {labels.h2Articles}
+        </h2>
+        <HomeArticles articles={articles} />
+        <ViewAllButton
+          lang={lang}
+          href={lang === "es" ? "/articulos" : "/english/articles"}
+        />
       </div>
     </ArtisanFront>
   );
 };
 
 HomePage.getInitialProps = async ctx => {
+  const { lang } = ctx;
+
+  const data = getLastArticles(3, lang);
+  const labels = i18n[lang] || i18n.es;
+
   return {
-    hreflangs: { es: "/", en: "/home" }
+    articles: data,
+    labels,
+    hreflangs: { es: "/", en: "/english" }
   };
 };
 
