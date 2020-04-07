@@ -35,14 +35,14 @@ export const ArticlesMainPage = ({ lang, hreflangs, articles, ...props }) => {
   );
 };
 
-ArticlesMainPage.getInitialProps = async ctx => {
+ArticlesMainPage.getInitialProps = async (ctx) => {
   const { lang } = ctx;
 
   const articles = getAllArticles(lang);
 
   return {
     articles,
-    hreflangs: { es: "/articulos", en: "/english/articles" }
+    hreflangs: { es: "/articulos", en: "/english/articles" },
   };
 };
 

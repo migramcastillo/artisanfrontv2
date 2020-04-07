@@ -7,16 +7,16 @@ import CodeBlock from "../../../components/CodeBlock";
 import WithLanguage from "../../../hoc/with-language";
 import {
   getArticleBySlug,
-  getArticleDataByKey
+  getArticleDataByKey,
 } from "../../../helpers/get-articles";
 
-export const ArticlePage = props => {
+export const ArticlePage = (props) => {
   const { article, Content, lang, hreflangs } = props;
   if (!article) return <Error status={404} />;
 
   const components = {
-    pre: props => <div {...props} />,
-    code: CodeBlock
+    pre: (props) => <div {...props} />,
+    code: CodeBlock,
   };
 
   return (
@@ -35,6 +35,7 @@ export const ArticlePage = props => {
 };
 
 ArticlePage.getInitialProps = async ({ query, lang, res }) => {
+  console.log("Reached");
   let hreflangs = { es: "", en: "" };
   const { slug } = query;
 
@@ -43,7 +44,7 @@ ArticlePage.getInitialProps = async ({ query, lang, res }) => {
   if (!article) {
     res.statusCode = 404;
     return {
-      lang
+      lang,
     };
   }
 
@@ -69,7 +70,7 @@ ArticlePage.getInitialProps = async ({ query, lang, res }) => {
     article: articleData,
     Content,
     lang,
-    hreflangs
+    hreflangs,
   };
 };
 

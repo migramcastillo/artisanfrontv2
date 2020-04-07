@@ -1,4 +1,4 @@
-.burger {
+.Burger {
   position: fixed;
   z-index: 30;
   bottom: 5px;
@@ -7,16 +7,16 @@
   @apply .flex .bg-white .justify-between .shadow .rounded-full .px-1 .pt-1 .items-center;
 }
 
-.burger > .option {
+.Burger > .Option {
   @apply .text-gray-600 .text-xs .flex .flex-col .items-center .flex-1;
 }
 
-.burger > .option > span {
+.Burger > .Option > .Span {
   @apply .text-gray-700 .font-medium;
 }
 
 @media (min-width: 1024px) {
-  .burger {
+  .Burger {
     display: none;
   }
 }

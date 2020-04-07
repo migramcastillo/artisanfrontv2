@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "nextjs",
-  "alias": "www.artisanfront.com",
+  "alias": ["www.artisanfront.com", "artisanfront"],
   "builds": [{ "src": "package.json", "use": "@now/next" }]
 }

@@ -1,29 +1,29 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import './Burger.css';
+import styles from "./Burger.module.css";
 
-const Burger = props => {
+const Burger = (props) => {
   return (
-    <aside className="burger">
-      <a href="/en/" className="option">
+    <aside className={styles.Burger}>
+      <a href="/en/" className={styles.Option}>
         <FontAwesomeIcon icon="info" />
-        <span>About</span>
+        <span className={styles.Span}>About</span>
       </a>
-      <a href="/en/" className="option">
+      <a href="/en/" className={styles.Option}>
         <FontAwesomeIcon icon="book" />
-        <span>Articles</span>
+        <span className={styles.Span}>Articles</span>
       </a>
-      <a href="/en/" className="option">
+      <a href="/en/" className={styles.Option}>
         <FontAwesomeIcon icon="home" />
-        <span>Home</span>
+        <span className={styles.Span}>Home</span>
       </a>
-      <a href="/en/" className="option">
+      <a href="/en/" className={styles.Option}>
         <FontAwesomeIcon icon="graduation-cap" />
-        <span>Courses</span>
+        <span className={styles.Span}>Courses</span>
       </a>
-      <a href="/en/" className="option">
+      <a href="/en/" className={styles.Option}>
         <FontAwesomeIcon icon="language" />
-        <span>English</span>
+        <span className={styles.Span}>English</span>
       </a>
     </aside>
   );

@@ -5,7 +5,7 @@ const WithLanguage = (WrappedComponent, lang) => {
     static async getInitialProps(ctx) {
       const pageProps = await WrappedComponent.getInitialProps({
         ...ctx,
-        lang
+        lang,
       });
       return { ...pageProps, lang };
     }

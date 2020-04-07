@@ -18,34 +18,33 @@ export const HomePage = ({ lang, labels, hreflangs, articles, ...props }) => {
         <h1 className="text-center text-3xl font-semibold text-gray-900 my-4">
           {labels.h1}
         </h1>
-        {lang === "es" && (
-          <div className="text-center py-4">
-            <NextDocsButton />
-          </div>
-        )}
         <h2 className="text-2xl text-center text-gray-800 font-semibold my-2">
           {labels.h2Courses}
         </h2>
         <HomeArticles articles={articles} />
-        <ViewAllButton
-          lang={lang}
-          href={lang === "es" ? "/cursos" : "/english/courses"}
-        />
+        <div className="py-4">
+          <ViewAllButton
+            lang={lang}
+            href={lang === "es" ? "/cursos" : "/english/courses"}
+          />
+        </div>
 
         <h2 className="text-2xl text-center text-gray-800 font-bold mb-6 mt-12">
           {labels.h2Articles}
         </h2>
         <HomeArticles articles={articles} />
-        <ViewAllButton
-          lang={lang}
-          href={lang === "es" ? "/articulos" : "/english/articles"}
-        />
+        <div className="py-4">
+          <ViewAllButton
+            lang={lang}
+            href={lang === "es" ? "/articulos" : "/english/articles"}
+          />
+        </div>
       </div>
     </ArtisanFront>
   );
 };
 
-HomePage.getInitialProps = async ctx => {
+HomePage.getInitialProps = async (ctx) => {
   const { lang } = ctx;
 
   const data = getLastArticles(3, lang);
@@ -54,7 +53,7 @@ HomePage.getInitialProps = async ctx => {
   return {
     articles: data,
     labels,
-    hreflangs: { es: "/", en: "/english" }
+    hreflangs: { es: "/", en: "/english" },
   };
 };
 
