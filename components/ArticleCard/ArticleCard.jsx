@@ -6,10 +6,10 @@ const ArticleCard = ({ data, image, ...props }) => {
     "https://images.pexels.com/photos/34153/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
 
   const bgImage = props.image || defaultImage;
-  const { title, timestamp, description, slug, lang } = data;
+  const { title, timestamp, description, slug } = data;
 
   return (
-    <a href={`/${lang === "en" ? "english/articles" : "articulos"}/${slug}`}>
+    <a href={`/articulos/${slug}`}>
       <div className="shadow-md my-2 flex flex-col justify-between h-48 lg:h-48 bg-gray-800 text-white rounded ">
         <div className="p-2">
           <h3 className="text-lg font-semibold">{title}</h3>

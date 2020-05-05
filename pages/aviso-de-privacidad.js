@@ -1,4 +1,11 @@
-import { PrivacyNoticePage } from "./english/privacy-notice";
-import WithLanguage from "../hoc/with-language";
+import ArtisanFront from "../layouts/ArtisanFront";
 
-export default WithLanguage(PrivacyNoticePage, "es");
+const PrivacyNoticePage = ({ lang, hreflangs, ...props }) => {
+  return (
+    <ArtisanFront lang={lang} hreflangs={hreflangs}>
+      <p>This is privacy section</p>
+    </ArtisanFront>
+  );
+};
+
+export default PrivacyNoticePage;

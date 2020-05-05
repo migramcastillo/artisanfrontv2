@@ -1,16 +1,15 @@
 import relation from "../articles/relation.json";
 import dayjs from "dayjs";
 
-export const getAllArticles = lang => {
+export const getAllArticles = () => {
   const articlesArr = Object.keys(relation)
-    .map(article => {
+    .map((article) => {
       const timestamp = relation[article].timestamp;
-      const data = relation[article][lang];
+      const data = relation[article];
 
       return {
-        lang,
         timestamp,
-        ...data
+        ...data,
       };
     })
     .sort((a, b) => {
@@ -22,16 +21,15 @@ export const getAllArticles = lang => {
   return articlesArr;
 };
 
-export const getLastArticles = (quantity, lang) => {
+export const getLastArticles = (quantity) => {
   const articlesArr = Object.keys(relation)
-    .map(article => {
+    .map((article) => {
       const timestamp = relation[article].timestamp;
-      const data = relation[article][lang];
+      const data = relation[article];
 
       return {
-        lang,
         timestamp,
-        ...data
+        ...data,
       };
     })
     .sort((a, b) => {
@@ -44,17 +42,15 @@ export const getLastArticles = (quantity, lang) => {
   return articlesArr;
 };
 
-export const getArticleBySlug = slug => {
-  const slugsFromArticles = Object.keys(relation).map(article => {
-    const { es, en } = relation[article];
-
+export const getArticleBySlug = (slug) => {
+  const slugsFromArticles = Object.keys(relation).map((article) => {
     return {
       key: article,
-      slugs: [es.slug, en.slug]
+      slugs: relation[article].slug,
     };
   });
 
-  const indexOfSlug = slugsFromArticles.findIndex(articleWithSlugs => {
+  const indexOfSlug = slugsFromArticles.findIndex((articleWithSlugs) => {
     const { slugs } = articleWithSlugs;
     return slugs.indexOf(slug) !== -1;
   });
@@ -66,13 +62,11 @@ export const getArticleBySlug = slug => {
   return slugsFromArticles[indexOfSlug];
 };
 
-export const getArticleDataByKey = (key, lang) => {
+export const getArticleDataByKey = (key) => {
   const data = relation[key];
-  const dataOnLang = data[lang];
 
   return {
-    ...dataOnLang,
+    ...data,
     timestamp: data.timestamp,
-    lang
   };
 };

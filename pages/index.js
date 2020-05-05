@@ -1,15 +1,13 @@
 import Head from "next/head";
 import ArtisanFront from "../layouts/ArtisanFront";
 import HomeArticles from "../components/HomeArticles/HomeArticles";
-import WithLanguage from "../hoc/with-language";
 import ViewAllButton from "../components/view-all-button";
-import NextDocsButton from "../components/next-docs-button/next-docs-button";
 import { getLastArticles } from "../helpers/get-articles";
 import i18n from "../locales/home.i18n";
 
-export const HomePage = ({ lang, labels, hreflangs, articles, ...props }) => {
+const HomePage = ({ lang, labels, hreflangs, articles, ...props }) => {
   return (
-    <ArtisanFront lang={lang} hreflangs={hreflangs}>
+    <ArtisanFront>
       <Head>
         <title>Artisan Front - {labels.title}</title>
         <meta name="description" content={labels.description} />
@@ -23,10 +21,7 @@ export const HomePage = ({ lang, labels, hreflangs, articles, ...props }) => {
         </h2>
         <HomeArticles articles={articles} />
         <div className="py-4">
-          <ViewAllButton
-            lang={lang}
-            href={lang === "es" ? "/cursos" : "/english/courses"}
-          />
+          <ViewAllButton href="/cursos" />
         </div>
 
         <h2 className="text-2xl text-center text-gray-800 font-bold mb-6 mt-12">
@@ -34,10 +29,7 @@ export const HomePage = ({ lang, labels, hreflangs, articles, ...props }) => {
         </h2>
         <HomeArticles articles={articles} />
         <div className="py-4">
-          <ViewAllButton
-            lang={lang}
-            href={lang === "es" ? "/articulos" : "/english/articles"}
-          />
+          <ViewAllButton href="/articulos" />
         </div>
       </div>
     </ArtisanFront>
@@ -45,16 +37,13 @@ export const HomePage = ({ lang, labels, hreflangs, articles, ...props }) => {
 };
 
 HomePage.getInitialProps = async (ctx) => {
-  const { lang } = ctx;
-
-  const data = getLastArticles(3, lang);
-  const labels = i18n[lang] || i18n.es;
+  const data = getLastArticles(3);
+  const labels = i18n.es;
 
   return {
     articles: data,
     labels,
-    hreflangs: { es: "/", en: "/english" },
   };
 };
 
-export default WithLanguage(HomePage, "es");
+export default HomePage;

@@ -1,10 +1,8 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { links } from "../helpers/locales";
+import t from "../helpers/locales";
 
-const Footer = ({ lang, hreflangs, ...props }) => {
-  const t = lang === "es" ? links["es"] : links["en"];
-
+const Footer = () => {
   return (
     <footer className="bg-gray-900 pt-2 pb-16 lg:pb-4 lg:pt-4">
       <div className="container mx-auto text-white text-xs lg:flex lg:justify-between lg:items-center">

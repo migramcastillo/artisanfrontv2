@@ -1,10 +1,7 @@
 import DesktopLink from "./DesktopLink/DesktopLink";
-import Link from "next/link";
-import { links } from "../helpers/locales";
+import t from "../helpers/locales";
 
-const NavDesktop = ({ lang, hreflangs, ...props }) => {
-  const t = lang === "es" ? links.es : links.en;
-
+const NavDesktop = () => {
   return (
     <nav className="hidden lg:flex justify-end w-2/3 items-center">
       <DesktopLink as={t.home.link} href={t.home.page}>
