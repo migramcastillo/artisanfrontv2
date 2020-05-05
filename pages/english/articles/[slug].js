@@ -25,7 +25,8 @@ export const ArticlePage = (props) => {
         <title>{article.title} - Artisan Front</title>
         <meta name="description" content={article.description} />
       </Head>
-      <article className="container mx-auto py-4 article">
+      <article className="container mx-auto py-4 px-4 sm:px-2 md:px-1 lg:px-0 article">
+        <p>Miguel Castillo - 5 Abril 2020</p>
         <MDXProvider components={components}>
           <Content />
         </MDXProvider>
@@ -35,7 +36,6 @@ export const ArticlePage = (props) => {
 };
 
 ArticlePage.getInitialProps = async ({ query, lang, res }) => {
-  console.log("Reached");
   let hreflangs = { es: "", en: "" };
   const { slug } = query;
 

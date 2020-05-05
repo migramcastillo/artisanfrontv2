@@ -16,14 +16,14 @@ const NavDesktop = ({ lang, hreflangs, ...props }) => {
       <DesktopLink as={t.courses.link} href={t.courses.page}>
         {t.courses.name}
       </DesktopLink>
-      <DesktopLink as={t.about.link} href={t.about.page}>
+      {/* <DesktopLink as={t.about.link} href={t.about.page}>
         {t.about.name}
-      </DesktopLink>
-      <Link href={lang === "es" ? hreflangs["en"] : hreflangs["es"]}>
+      </DesktopLink> */}
+      {/* <Link href={lang === "es" ? hreflangs["en"] : hreflangs["es"]}>
         <a className="font-semibold mx-8 bg-green-500 text-center p-2 rounded text-white shadow cursor-pointer">
           {lang === "es" ? "English" : "Español"}
         </a>
-      </Link>
+      </Link> */}
     </nav>
   );
 };

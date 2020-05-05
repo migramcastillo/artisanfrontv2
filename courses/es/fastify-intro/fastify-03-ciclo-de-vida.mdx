@@ -1,0 +1,56 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+
+# Ciclo de vida - Fastify desde 0
+
+Antes de pasar a las validaciones, middlewares y hooks es importante saber que cada solicitud realizada a Fastify
+tiene un ciclo de vida bien definido, nosotros podemos declarar funciones Hooks que se ejecutan en un punto
+especifico de este ciclo de vida, algunos ejemplos de esta implementación puede ser:
+
+- Validar la existencia de una cookie o un token antes de realizar la validación de campos.
+- Validar condiciones especificas de la solicitud antes de la función handler pero después de hacer la validación.
+- Ejecutar alguna tarea una vez que la respuesta del servidor ha sido enviada al cliente.
+
+[Puedes consultar el diagrama de ciclo de vida aquí](https://www.fastify.io/docs/v2.0.x/Lifecycle/). En resumen
+esto sucede cuando un usuario envia un request a tu server Fastify:
+
+- Busca la ruta que coincida con el request del cliente.
+- Se ejecuta el Hook `onRequest`.
+- Se ejecutan los Middlewares de la aplicación.
+- Se ejecuta el Hook `preParsing`.
+- Se realiza el parsing de la solicitud, esto es la transformación del request para preparar `query`, `params` o `body`
+  en el formato solicitado.
+- Se ejecuta el Hook `preValidation`.
+- Se ejecuta la validación con el JSON Schema especificado.
+- Se ejecuta el Hook `preHandler`.
+- Se ejecuta la función handler de la ruta, esta son las funciones que hemos definido en las lecciones anteriores
+  después del nombre de la ruta.
+- Se ejecuta el Hook `preSerialization` este se encarga de transformar el reply que le entregaremos al usuario.
+- Se ejecuta el Hook `onSend` que es el último Hook antes de que la solicitud sea enviada al cliente.
+- Se envía la respuesta al cliente.
+- Se ejecuta el Hook `onResponse`.
+
+No es necesario aprenderse cada paso pero si es una buena referencia saber que podemos modificar el comportamiento
+de toda nuestra solicitud o una ruta especifica manipulando el Hook correspondiente. En mi experiencia personal
+he utilizado más los hooks `preValidation` y `preHandler`. En la siguiente lección vamos a ver como realizar una
+validación con JSON Schema para nuestras rutas.
+
+<div className="pt-6 pb-4">
+  <h4 className="text-xl text-center font-semibold text-gray-800">
+    Continua el curso de Fastify desde 0
+  </h4>
+  <div className="flex text-lg justify-between pt-2">
+    <a
+      className="text-blue-600 font-semibold"
+      href="/cursos/curso-fastify-desde-0/fastify-02-logger"
+    >
+      <FontAwesomeIcon icon="chevron-left" /> 02 Logger
+    </a>
+    <a
+      className="text-blue-600 font-semibold"
+      href="/cursos/curso-fastify-desde-0/fastify-04-validaciones"
+    >
+      04 Validaciones <FontAwesomeIcon icon="chevron-right" />
+    </a>
+  </div>
+</div>

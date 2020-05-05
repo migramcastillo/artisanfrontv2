@@ -5,18 +5,22 @@ import {
   faInfo,
   faGraduationCap,
   faLanguage,
-  faLink
+  faChevronRight,
+  faLink,
+  faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
   faTwitter,
-  faYoutube
+  faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 
 library.add(
   faHome,
   faBook,
   faInfo,
+  faChevronRight,
+  faChevronLeft,
   faGraduationCap,
   faLanguage,
   faGithub,

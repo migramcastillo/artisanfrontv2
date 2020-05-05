@@ -1,4 +1,21 @@
 {
+  "fastify-01": {
+    "timestamp": "2019-12-01",
+    "en": {
+      "slug": "curso-fastify-introduccion",
+      "file": "fastify-01-intro",
+      "title": "Introducción a Fastify",
+      "description": "A Hello World site",
+      "hreflang": "hola-mundo"
+    },
+    "es": {
+      "slug": "curso-fastify-introduccion",
+      "file": "fastify-01-intro",
+      "title": "Introducción a Fastify",
+      "description": "A Hello World site",
+      "hreflang": "hola-mundo"
+    }
+  },
   "hello-world": {
     "timestamp": "2019-12-01",
     "en": {
