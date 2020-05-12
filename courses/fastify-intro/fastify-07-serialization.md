@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-
 # Serialization - Fastify desde 0
 
 Serialization es el proceso que utiliza Fastify para dar forma al body que se retorna al usuario cuando se
@@ -99,23 +96,3 @@ server.post("/book", {
 
 Nota: Aunque en esta petición siempre vamos a mandar error, lo mejor sería tener un schema general para los errores
 y manejar todo error desde el errorHandler, vamos a ver a detalle el errorHandler en otras lecciones.
-
-<div className="pt-6 pb-4">
-  <h4 className="text-xl text-center font-semibold text-gray-800">
-    Continua el curso de Fastify desde 0
-  </h4>
-  <div className="flex text-lg justify-between pt-2">
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-06-handlers-asincronos"
-    >
-      <FontAwesomeIcon icon="chevron-left" /> 06 Handlers asíncronos
-    </a>
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-08-decorators"
-    >
-      08 Decorators <FontAwesomeIcon icon="chevron-right" />
-    </a>
-  </div>
-</div>

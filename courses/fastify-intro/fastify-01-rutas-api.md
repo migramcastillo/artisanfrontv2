@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-
 # Rutas API - Fastify desde 0
 
 Al igual que con otros Frameworks Web de NodeJS, es muy fácil utilizar diferentes métodos de solicitudes HTTP
@@ -225,23 +222,3 @@ server.listen(3000, (err) => {
   console.log("Fastify corriendo en el puerto 3000");
 });
 ```
-
-<div className="pt-6 pb-4">
-  <h4 className="text-xl text-center font-semibold text-gray-800">
-    Continua el curso de Fastify desde 0
-  </h4>
-  <div className="flex text-lg justify-between pt-2">
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-00-intro"
-    >
-      <FontAwesomeIcon icon="chevron-left" /> 00 Introducción
-    </a>
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-02-logging"
-    >
-      02 Logger <FontAwesomeIcon icon="chevron-right" />
-    </a>
-  </div>
-</div>

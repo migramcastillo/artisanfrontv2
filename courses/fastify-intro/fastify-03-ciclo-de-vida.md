@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-
 # Ciclo de vida - Fastify desde 0
 
 Antes de pasar a las validaciones, middlewares y hooks es importante saber que cada solicitud realizada a Fastify
@@ -34,23 +31,3 @@ No es necesario aprenderse cada paso pero si es una buena referencia saber que p
 de toda nuestra solicitud o una ruta especifica manipulando el Hook correspondiente. En mi experiencia personal
 he utilizado más los hooks `preValidation` y `preHandler`. En la siguiente lección vamos a ver como realizar una
 validación con JSON Schema para nuestras rutas.
-
-<div className="pt-6 pb-4">
-  <h4 className="text-xl text-center font-semibold text-gray-800">
-    Continua el curso de Fastify desde 0
-  </h4>
-  <div className="flex text-lg justify-between pt-2">
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-02-logger"
-    >
-      <FontAwesomeIcon icon="chevron-left" /> 02 Logger
-    </a>
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-04-validaciones"
-    >
-      04 Validaciones <FontAwesomeIcon icon="chevron-right" />
-    </a>
-  </div>
-</div>

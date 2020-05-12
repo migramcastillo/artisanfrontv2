@@ -2,13 +2,13 @@ import React from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import nightOwl from "prism-react-renderer/themes/nightOwl";
 
-export default ({ children, className }) => {
-  const language = className.replace(/language-/, "");
+export default (props) => {
+  const { className: classProp, language, value } = props;
   return (
     <Highlight
       {...defaultProps}
       theme={nightOwl}
-      code={children}
+      code={value}
       language={language}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (

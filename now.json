@@ -1,5 +1,4 @@
 {
   "version": 2,
-  "alias": ["www.artisanfront.com", "artisanfront"],
   "builds": [{ "src": "package.json", "use": "@now/next" }]
 }

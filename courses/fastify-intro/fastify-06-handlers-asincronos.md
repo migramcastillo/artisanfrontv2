@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-
 # Handlers Asíncronos - Fastify desde 0
 
 Fastify soporta el uso de las funciones asincronas en sus Handlers por si quieres evitar patrones como el famoso `callback hell`
@@ -72,23 +69,3 @@ server.get("/book/:id", {
   },
 });
 ```
-
-<div className="pt-6 pb-4">
-  <h4 className="text-xl text-center font-semibold text-gray-800">
-    Continua el curso de Fastify desde 0
-  </h4>
-  <div className="flex text-lg justify-between pt-2">
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-05-validacion-personalizada"
-    >
-      <FontAwesomeIcon icon="chevron-left" /> 05 Validación personalizada
-    </a>
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-07-serialization"
-    >
-      07 Serialization <FontAwesomeIcon icon="chevron-right" />
-    </a>
-  </div>
-</div>

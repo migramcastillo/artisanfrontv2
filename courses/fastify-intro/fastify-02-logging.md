@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-
 # Logging - Fastify desde 0
 
 Una de las librerías con las que Fastify ya trabaja desde su código es con [Pinno Logger](https://getpino.io/), un logger con
@@ -154,23 +151,3 @@ const server = fastify({
 
 Una vez que reinicies el programa podras ver que ya no se muestran los logs en la consola pero aparecerá un nuevo
 archivo en la raíz de tu proyecto llamado `logs.log` con los logs que se generaban antes.
-
-<div className="pt-6 pb-4">
-  <h4 className="text-xl text-center font-semibold text-gray-800">
-    Continua el curso de Fastify desde 0
-  </h4>
-  <div className="flex text-lg justify-between pt-2">
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-01-rutas-api"
-    >
-      <FontAwesomeIcon icon="chevron-left" /> 01 Rutas API
-    </a>
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-03-ciclo-de-vida"
-    >
-      03 Ciclo de vida <FontAwesomeIcon icon="chevron-right" />
-    </a>
-  </div>
-</div>

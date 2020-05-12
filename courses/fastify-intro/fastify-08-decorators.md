@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-
 # Decorators - Fastify desde 0
 
 Supongamos que en algún hook como `preHanlder` o `preValidation` quieres agregar algún campo que puedas utilizar
@@ -168,23 +165,3 @@ server.get("/logout", (request, reply) => {
     .send({ message: "Sesión cerrada" });
 });
 ```
-
-<div className="pt-6 pb-4">
-  <h4 className="text-xl text-center font-semibold text-gray-800">
-    Continua el curso de Fastify desde 0
-  </h4>
-  <div className="flex text-lg justify-between pt-2">
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-07-serialization"
-    >
-      <FontAwesomeIcon icon="chevron-left" /> 07 Serialization
-    </a>
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-09-middlewares-plugins"
-    >
-      09 Middlewares y Plugins <FontAwesomeIcon icon="chevron-right" />
-    </a>
-  </div>
-</div>

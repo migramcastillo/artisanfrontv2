@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-
 # Middlewares y Plugins - Fastify desde 0
 
 Puede haber un poco de confusión en cuanto a este tema de Middlewares en Fastify, de forma resumida _no existen los Middlewares
@@ -259,23 +256,3 @@ server.listen(3000, (err) => {
   console.log("Fastify corriendo en el puerto 3000");
 });
 ```
-
-<div className="pt-6 pb-4">
-  <h4 className="text-xl text-center font-semibold text-gray-800">
-    Continua el curso de Fastify desde 0
-  </h4>
-  <div className="flex text-lg justify-between pt-2">
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-08-decorators"
-    >
-      <FontAwesomeIcon icon="chevron-left" /> 08 Decorators
-    </a>
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-10-manejo-de-errores"
-    >
-      10 Manejo de errores <FontAwesomeIcon icon="chevron-right" />
-    </a>
-  </div>
-</div>

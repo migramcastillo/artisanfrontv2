@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-
 # Validaciones - Fastify desde 0
 
 Fastify utiliza validaciones de Schema mediante librerias llamdas JSON Schema y Ajv. Esto quiere decir que
@@ -39,7 +36,7 @@ server.post("/book", {
 });
 ```
 
-Parece un poco complicado al principio pero si entendemos bien como se realiza la estructura, podemos
+Parece un poco complicado al principio pero si entendemos bien como se realiza la estructura y con la prácitca todo será más sencillo, podemos
 separar tanto los Schemas como el Handler en archivos separados para manejarlo mejor.
 
 La ruta book recibe las opciones de handler y schema, handler es la misma función que utilizamos anteriormente,
@@ -167,23 +164,3 @@ schema: {
 Aunque muchas veces podemos definir fácilmente los tipos de datos que vamos a recibir en nuestras rutas, otra veces
 unos datos dependen del valor de otros o hay validaciones muy especificas que podemos realizar, en la siguiente
 lección vamos a ver como definir un hook en donde se aplicará esta validación.
-
-<div className="pt-6 pb-4">
-  <h4 className="text-xl text-center font-semibold text-gray-800">
-    Continua el curso de Fastify desde 0
-  </h4>
-  <div className="flex text-lg justify-between pt-2">
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-03-ciclo-de-vida"
-    >
-      <FontAwesomeIcon icon="chevron-left" /> 03 Ciclo de vida
-    </a>
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-05-validacion-personalizada"
-    >
-      05 Validaciones personalizadas <FontAwesomeIcon icon="chevron-right" />
-    </a>
-  </div>
-</div>

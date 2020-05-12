@@ -1,11 +1,12 @@
-import { MDXProvider } from "@mdx-js/react";
 import Error from "next/error";
 import Head from "next/head";
 import ArtisanFront from "../../../layouts/ArtisanFront";
+import matter from "gray-matter";
 import CodeBlock from "../../../components/CodeBlock";
+import ReactMarkdown from "react-markdown";
 
 const CourseLessonPage = (props) => {
-  const { lesson, Content } = props;
+  const { lesson, markDown } = props;
   if (!lesson) return <Error status={404} />;
 
   const components = {
@@ -20,9 +21,7 @@ const CourseLessonPage = (props) => {
       </Head>
       <article className="container mx-auto py-4 px-4 sm:px-2 md:px-1 lg:px-0 article">
         <p>Miguel Castillo - 5 Abril 2020</p>
-        <MDXProvider components={components}>
-          <Content />
-        </MDXProvider>
+        <ReactMarkdown source={markDown} renderers={components} />
       </article>
     </ArtisanFront>
   );
@@ -44,17 +43,15 @@ CourseLessonPage.getInitialProps = async ({ query, res }) => {
     return {};
   }
 
-  let Content = null;
-  if (lesson) {
-    Content = await import(
-      `../../../courses/${courseData.folder}/${lesson.file}.mdx`
-    );
-    Content = Content.default;
-  }
+  const {
+    default: content,
+  } = require(`../../../courses/${courseData.folder}/${lesson.file}.md`);
+
+  const data = matter(content);
 
   return {
     lesson,
-    Content,
+    markDown: data.content,
   };
 };
 

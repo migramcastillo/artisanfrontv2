@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-
 # Validacion personalizada - Fastify desde 0
 
 Si quisieras cubrir una validación que no puedes realizar con JSON Schema o simplemente no te gusta JSON Schema
@@ -105,23 +102,3 @@ válida. Por defecto el código es siempre 200.
 
 La validación con Schemas personalizados Ajv y schemas compartidos va a quedar fuera del alcance de este curso. Voy
 a crear un artículo y un video especial a futuro para mostrar como hacer este tipo de validaciones.
-
-<div className="pt-6 pb-4">
-  <h4 className="text-xl text-center font-semibold text-gray-800">
-    Continua el curso de Fastify desde 0
-  </h4>
-  <div className="flex text-lg justify-between pt-2">
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-04-validaciones"
-    >
-      <FontAwesomeIcon icon="chevron-left" /> 04 Validación
-    </a>
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-06-handlers-asincronos"
-    >
-      06 Handlers asíncronos <FontAwesomeIcon icon="chevron-right" />
-    </a>
-  </div>
-</div>

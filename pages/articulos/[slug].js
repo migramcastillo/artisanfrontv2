@@ -1,4 +1,3 @@
-import { MDXProvider } from "@mdx-js/react";
 import Error from "next/error";
 import Head from "next/head";
 import ArtisanFront from "../../layouts/ArtisanFront";
@@ -7,9 +6,10 @@ import {
   getArticleBySlug,
   getArticleDataByKey,
 } from "../../helpers/get-articles";
+import matter from "gray-matter";
+import ReactMarkdown from "react-markdown";
 
-export const ArticlePage = (props) => {
-  const { article, Content, lang, hreflangs } = props;
+export const ArticlePage = ({ article, markDown }) => {
   if (!article) return <Error status={404} />;
 
   const components = {
@@ -18,16 +18,14 @@ export const ArticlePage = (props) => {
   };
 
   return (
-    <ArtisanFront lang={lang} hreflangs={hreflangs}>
+    <ArtisanFront>
       <Head>
         <title>{article.title} - Artisan Front</title>
         <meta name="description" content={article.description} />
       </Head>
       <article className="container mx-auto py-4 px-4 sm:px-2 md:px-1 lg:px-0 article">
         <p>Miguel Castillo - 5 Abril 2020</p>
-        <MDXProvider components={components}>
-          <Content />
-        </MDXProvider>
+        <ReactMarkdown source={markDown} renderers={components} />
       </article>
     </ArtisanFront>
   );
@@ -47,15 +45,13 @@ ArticlePage.getInitialProps = async ({ query, res }) => {
 
   const articleData = getArticleDataByKey(key);
 
-  let Content = null;
-  if (article) {
-    Content = await import(`../../articles/${articleData.file}.mdx`);
-    Content = Content.default;
-  }
+  const { default: content } = require(`../../articles/${articleData.file}.md`);
+
+  const data = matter(content);
 
   return {
     article: articleData,
-    Content,
+    markDown: data.content,
   };
 };
 

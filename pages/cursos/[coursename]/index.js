@@ -1,16 +1,22 @@
 import ArtisanFront from "../../../layouts/ArtisanFront";
+import { getCourseBySlug } from "../../../helpers/get-courses";
+import CardLesson from "../../../components/CardLesson/CardLesson";
 
-export const CourseIndexPage = ({ courseData, summary, ...props }) => {
+export const CourseIndexPage = ({ courseData, lessonsList }) => {
   return (
     <ArtisanFront>
-      <h1>{courseData.name}</h1>
-      {summary.map((lesson) => (
-        <div>
-          <a href={`/cursos/${courseData.slug}/${lesson.file}`}>
-            {lesson.title}
-          </a>
+      <div className="container mx-auto py-2">
+        <h1 className="text-2xl font-semibold py-4 text-gray-900 text-center">
+          {courseData.title}
+        </h1>
+        <div className="flex flex-col md:flex-row md:flex-wrap md:justify-center">
+          {Array.from(lessonsList).map((lesson, index) => (
+            <div key={index} className="md:w-1/3 md:px-1">
+              <CardLesson data={lesson} />
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </ArtisanFront>
   );
 };
@@ -19,16 +25,21 @@ CourseIndexPage.getInitialProps = async (ctx) => {
   const { query } = ctx;
   const { coursename } = query;
 
-  const { default: allCourses } = await import(`../../../courses/list`);
-
-  const courseData = allCourses.find((course) => course.slug === coursename);
-
-  const { default: summary } = await import(
+  const courseData = getCourseBySlug(coursename);
+  const { default: courseLessonsList } = await import(
     `../../../courses/${courseData.folder}/list`
   );
 
+  const lessonsList = courseLessonsList.map((lesson) => ({
+    ...lesson,
+    bgImage: courseData.bgImage,
+    author: courseData.author,
+    timestamp: courseData.timestamp,
+    courseSlug: courseData.slug,
+  }));
+
   return {
-    summary,
+    lessonsList,
     courseData,
   };
 };

@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-
 # Archivos Estáticos - Fastify desde 0
 
 Por defecto Fastify no puede enviar archivos HTML como respuestas en `reply` pero con un plugin oficial de
@@ -175,15 +172,3 @@ server.setNotFoundHandler(function (request, reply) {
   }
 });
 ```
-
-<div className="pt-6 pb-4">
-  <h4 className="text-xl text-center font-semibold text-gray-800">
-    Continua el curso de Fastify desde 0
-  </h4>
-  <div className="flex text-lg justify-between pt-2">
-    <div></div>
-    <a className="text-blue-600 font-semibold" href="/">
-      01 Rutas API <FontAwesomeIcon icon="chevron-right" />
-    </a>
-  </div>
-</div>

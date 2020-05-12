@@ -1,39 +1,18 @@
-import relation from "../articles/relation.json";
+import relation from "../courses/list";
 import dayjs from "dayjs";
 
-export const getAllArticles = lang => {
-  const articlesArr = Object.keys(relation)
-    .map(article => {
-      const timestamp = relation[article].timestamp;
-      const data = relation[article][lang];
+export const getAllCourses = () => {
+  const coursesArr = relation.sort((a, b) => {
+    a = dayjs(a.timestamp).toDate();
+    b = dayjs(b.timestamp).toDate();
+    return a > b ? -1 : a < b ? 1 : 0;
+  });
 
-      return {
-        lang,
-        timestamp,
-        ...data
-      };
-    })
-    .sort((a, b) => {
-      a = dayjs(a.timestamp).toDate();
-      b = dayjs(b.timestamp).toDate();
-      return a > b ? -1 : a < b ? 1 : 0;
-    });
-
-  return articlesArr;
+  return coursesArr;
 };
 
-export const getLastArticles = (quantity, lang) => {
-  const articlesArr = Object.keys(relation)
-    .map(article => {
-      const timestamp = relation[article].timestamp;
-      const data = relation[article][lang];
-
-      return {
-        lang,
-        timestamp,
-        ...data
-      };
-    })
+export const getLastCourses = (quantity) => {
+  const coursesArr = relation
     .sort((a, b) => {
       a = dayjs(a.timestamp).toDate();
       b = dayjs(b.timestamp).toDate();
@@ -41,38 +20,15 @@ export const getLastArticles = (quantity, lang) => {
     })
     .slice(0, quantity);
 
-  return articlesArr;
+  return coursesArr;
 };
 
-export const getArticleBySlug = slug => {
-  const slugsFromArticles = Object.keys(relation).map(article => {
-    const { es, en } = relation[article];
+export const getCourseBySlug = (slug) => {
+  const courseFindFromSlug = relation.find((course) => course.slug === slug);
 
-    return {
-      key: article,
-      slugs: [es.slug, en.slug]
-    };
-  });
-
-  const indexOfSlug = slugsFromArticles.findIndex(articleWithSlugs => {
-    const { slugs } = articleWithSlugs;
-    return slugs.indexOf(slug) !== -1;
-  });
-
-  if (indexOfSlug === -1) {
+  if (!courseFindFromSlug) {
     return null;
   }
 
-  return slugsFromArticles[indexOfSlug];
-};
-
-export const getArticleDataByKey = (key, lang) => {
-  const data = relation[key];
-  const dataOnLang = data[lang];
-
-  return {
-    ...dataOnLang,
-    timestamp: data.timestamp,
-    lang
-  };
+  return courseFindFromSlug;
 };

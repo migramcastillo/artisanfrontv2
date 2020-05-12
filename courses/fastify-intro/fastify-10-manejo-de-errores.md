@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-
 # Manejo de Errores - Fastify desde 0
 
 Uno de los puntos más importantes cuando se crea una aplicación es saber en donde son capturados y procesados
@@ -150,23 +147,3 @@ de especificar el nivel de log de la aplicación, puedes colocar en algunas func
 donde no sea tan indispensable capturarlos y el log de nivel `warn` o `error` donde si sea indispensable capturar
 esos errores, eso te permitirá por ejemplo capturar errores importantes en el ambiente de producción o capturar
 información muy útil de depuración en el modo desarrollo.
-
-<div className="pt-6 pb-4">
-  <h4 className="text-xl text-center font-semibold text-gray-800">
-    Continua el curso de Fastify desde 0
-  </h4>
-  <div className="flex text-lg justify-between pt-2">
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-09-middlewares-plugins"
-    >
-      <FontAwesomeIcon icon="chevron-left" /> 09 Middlewares o Plugins
-    </a>
-    <a
-      className="text-blue-600 font-semibold"
-      href="/cursos/curso-fastify-desde-0/fastify-11-archivos-estaticos"
-    >
-      11 Archivos Estáticos <FontAwesomeIcon icon="chevron-right" />
-    </a>
-  </div>
-</div>

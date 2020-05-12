@@ -4,8 +4,10 @@ import HomeArticles from "../components/HomeArticles/HomeArticles";
 import ViewAllButton from "../components/view-all-button";
 import { getLastArticles } from "../helpers/get-articles";
 import i18n from "../locales/home.i18n";
+import { getLastCourses } from "../helpers/get-courses";
+import HomeListing from "../components/HomeListing/HomeListing";
 
-const HomePage = ({ lang, labels, hreflangs, articles, ...props }) => {
+const HomePage = ({ lang, labels, hreflangs, articles, courses }) => {
   return (
     <ArtisanFront>
       <Head>
@@ -14,20 +16,20 @@ const HomePage = ({ lang, labels, hreflangs, articles, ...props }) => {
       </Head>
       <div className="container mx-auto p-2">
         <h1 className="text-center text-3xl font-semibold text-gray-900 my-4">
-          {labels.h1}
+          Artículos y cursos de desarrollo web gratis
         </h1>
         <h2 className="text-2xl text-center text-gray-800 font-semibold my-2">
-          {labels.h2Courses}
+          Últimos cursos
         </h2>
-        <HomeArticles articles={articles} />
+        <HomeListing listing={courses} kind="course" />
         <div className="py-4">
           <ViewAllButton href="/cursos" />
         </div>
 
         <h2 className="text-2xl text-center text-gray-800 font-bold mb-6 mt-12">
-          {labels.h2Articles}
+          Últimos artículos
         </h2>
-        <HomeArticles articles={articles} />
+        <HomeListing listing={articles} kind="article" />
         <div className="py-4">
           <ViewAllButton href="/articulos" />
         </div>
@@ -37,11 +39,11 @@ const HomePage = ({ lang, labels, hreflangs, articles, ...props }) => {
 };
 
 HomePage.getInitialProps = async (ctx) => {
-  const data = getLastArticles(3);
   const labels = i18n.es;
 
   return {
-    articles: data,
+    articles: getLastArticles(3),
+    courses: getLastCourses(3),
     labels,
   };
 };
