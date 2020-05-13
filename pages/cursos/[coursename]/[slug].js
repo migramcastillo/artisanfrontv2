@@ -8,6 +8,7 @@ import CodeBlock from "../../../components/CodeBlock";
 import ReactMarkdown from "react-markdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LessonNavigation from "../../../components/LessonNavigation/LessonNavigation";
+import allCourses from "../../../courses/list";
 
 const CourseLessonPage = ({
   lesson,
@@ -22,14 +23,15 @@ const CourseLessonPage = ({
     pre: (props) => <div {...props} />,
     code: CodeBlock,
     link: (props) => {
-      return <a {...props} className="text-indigo-700" />;
+      return <a {...props} className="text-blue-800" />;
     },
   };
 
   return (
     <ArtisanFront>
       <Head>
-        <title>{lesson.title} - Artisan Front</title>
+        <title>{lesson.title}</title>
+        <meta name="description" content={lesson.description} />
       </Head>
       <article className="container mx-auto py-4 px-4 sm:px-2 md:px-1 lg:px-0 article">
         <p>
@@ -37,20 +39,24 @@ const CourseLessonPage = ({
           {dayjs(courseData.timestamp).format("DD MMM YYYY")}
         </p>
         <div className="flex">
-          <a href="/">
-            <div className="bg-gray-900 text-white rounded shadow py-2 px-3 text-sm">
-              <FontAwesomeIcon icon={["fab", "github"]} /> Código de está
-              lección
-            </div>
-          </a>
-          <a href="/">
-            <div className="bg-red-600 text-white rounded shadow py-2 px-3 text-sm ml-2">
-              <FontAwesomeIcon icon={["fab", "youtube"]} /> Videotutorial
-            </div>
-          </a>
+          {lesson.github && (
+            <a href={lesson.github}>
+              <div className="bg-gray-900 text-white rounded shadow py-2 px-3 text-sm mr-2">
+                <FontAwesomeIcon icon={["fab", "github"]} /> Código de está
+                lección
+              </div>
+            </a>
+          )}
+          {lesson.video && (
+            <a href={lesson.video}>
+              <div className="bg-red-600 text-white rounded shadow py-2 px-3 text-sm mr-2">
+                <FontAwesomeIcon icon={["fab", "youtube"]} /> Videotutorial
+              </div>
+            </a>
+          )}
           <Link as={`/cursos/${courseData.slug}`} href="/cursos/[coursename]">
             <a>
-              <div className="bg-blue-500 text-white rounded shadow py-2 px-3 text-sm ml-2">
+              <div className="bg-blue-600 text-white rounded shadow py-2 px-3 text-sm">
                 <FontAwesomeIcon icon="graduation-cap" /> Indice del curso
               </div>
             </a>
@@ -71,7 +77,6 @@ const CourseLessonPage = ({
 CourseLessonPage.getInitialProps = async ({ query, res }) => {
   const { coursename, slug } = query;
 
-  const { default: allCourses } = await import(`../../../courses/list`);
   const courseData = allCourses.find((course) => course.slug === coursename);
   const { default: allLessons } = await import(
     `../../../courses/${courseData.folder}/list`

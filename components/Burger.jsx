@@ -8,7 +8,7 @@ const Burger = (props) => {
       <Link href="/">
         <a className={styles.Option}>
           <FontAwesomeIcon icon="home" />
-          <span className={styles.Span}>Inicio</span>
+          <span className={styles.Span}>Home</span>
         </a>
       </Link>
       <Link href="/articulos">

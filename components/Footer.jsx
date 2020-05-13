@@ -8,16 +8,16 @@ const Footer = () => {
       <div className="container mx-auto text-white text-xs lg:flex lg:justify-between lg:items-center">
         <nav className="text-center flex flex-col md:flex-row md:flex-wrap text-sm lg:flex-1 lg:text-left">
           <Link as={t.home.link} href={t.home.page}>
-            <a className="py-1 md:w-1/3">{t.home.name}</a>
+            <a className="lg:py-1 py-4 md:w-1/3">{t.home.name}</a>
           </Link>
           <Link as={t.articles.link} href={t.articles.page}>
-            <a className="py-1 md:w-1/3">{t.articles.name}</a>
+            <a className="lg:py-1 py-4 md:w-1/3">{t.articles.name}</a>
           </Link>
           <Link as={t.courses.link} href={t.courses.page}>
-            <a className="py-1 md:w-1/3">{t.courses.name}</a>
+            <a className="lg:py-1 py-4 md:w-1/3">{t.courses.name}</a>
           </Link>
           <Link as={t.privacy.link} href={t.privacy.page}>
-            <a className="py-1 md:w-1/3">{t.privacy.name}</a>
+            <a className="lg:py-1 py-4 md:w-1/3">{t.privacy.name}</a>
           </Link>
         </nav>
         <nav className="flex text-xl py-2 items-center justify-around lg:flex-1 lg:justify-center">

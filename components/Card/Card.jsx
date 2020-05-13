@@ -13,14 +13,14 @@ const Card = ({ data, kind }) => {
       <a>
         <div
           style={{
-            backgroundImage: `url('/${bgImage}')`,
+            backgroundImage: bgImage ? `url('/${bgImage}')` : "",
             backgroundSize: "50%",
           }}
           className="shadow-md my-2 flex flex-col justify-between h-48 lg:h-48 bg-gray-800 text-white rounded bg-center bg-no-repeat"
         >
           <div className="p-2">
             <h3 className="text-lg font-semibold">{title}</h3>
-            <p className="text-sm">{description}</p>
+            {kind !== "course" && <p className="text-sm">{description}</p>}
           </div>
 
           <div className="p-2">

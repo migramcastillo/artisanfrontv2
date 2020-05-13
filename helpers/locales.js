@@ -1,5 +1,5 @@
 const links = {
-  home: { name: "Inicio", link: "/", page: "index" },
+  home: { name: "Home", link: "/", page: "index" },
   articles: {
     name: "Articulos",
     link: "/articulos",
