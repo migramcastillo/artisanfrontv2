@@ -12,7 +12,7 @@ const ArtisanFront = ({ lang, hreflangs, ...props }) => {
       <Burger />
       <style jsx>{`
         .min-h-screen {
-          min-height: 100vh;
+          min-height: 80vh;
         }
       `}</style>
     </>
