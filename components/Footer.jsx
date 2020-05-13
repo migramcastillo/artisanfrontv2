@@ -16,9 +16,6 @@ const Footer = () => {
           <Link as={t.courses.link} href={t.courses.page}>
             <a className="py-1 md:w-1/3">{t.courses.name}</a>
           </Link>
-          <Link as={t.about.link} href={t.about.page}>
-            <a className="py-1 md:w-1/3">{t.about.name}</a>
-          </Link>
           <Link as={t.privacy.link} href={t.privacy.page}>
             <a className="py-1 md:w-1/3">{t.privacy.name}</a>
           </Link>

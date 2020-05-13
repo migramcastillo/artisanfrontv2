@@ -5,7 +5,7 @@ import CardLesson from "../../../components/CardLesson/CardLesson";
 export const CourseIndexPage = ({ courseData, lessonsList }) => {
   return (
     <ArtisanFront>
-      <div className="container mx-auto py-2">
+      <div className="container mx-auto p-2">
         <h1 className="text-2xl font-semibold py-4 text-gray-900 text-center">
           {courseData.title}
         </h1>

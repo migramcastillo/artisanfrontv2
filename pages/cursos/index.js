@@ -5,7 +5,7 @@ import { getAllCourses } from "../../helpers/get-courses";
 const ListCoursesPage = ({ courses }) => {
   return (
     <ArtisanFront>
-      <div className="container mx-auto py-2">
+      <div className="container mx-auto p-2">
         <h1 className="text-2xl font-semibold py-4 text-gray-900 text-center">
           Cursos gratuitos de desarrollo web
         </h1>

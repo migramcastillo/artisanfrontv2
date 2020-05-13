@@ -3,7 +3,7 @@ import Highlight, { defaultProps } from "prism-react-renderer";
 import nightOwl from "prism-react-renderer/themes/nightOwl";
 
 export default (props) => {
-  const { className: classProp, language, value } = props;
+  const { language, value } = props;
   return (
     <Highlight
       {...defaultProps}
@@ -13,7 +13,7 @@ export default (props) => {
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre
-          className={"rounded shadow " + className}
+          className="rounded shadow overflow-x-scroll lg:overflow-x-auto"
           style={{ ...style, padding: "15px" }}
         >
           {tokens.map((line, i) => (
