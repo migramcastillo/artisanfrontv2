@@ -3,7 +3,7 @@
     "build": "next build",
     "dev": "next dev",
     "now-build": "next build",
-    "start": "next"
+    "start": "next start"
   },
   "engines": {
     "node": ">=12"
