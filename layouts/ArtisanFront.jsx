@@ -10,6 +10,11 @@ const ArtisanFront = ({ lang, hreflangs, ...props }) => {
       <main className="min-h-screen">{props.children}</main>
       <Footer lang={lang} hreflangs={hreflangs} />
       <Burger />
+      <style jsx>{`
+        .min-h-screen {
+          min-height: 100vh;
+        }
+      `}</style>
     </>
   );
 };
