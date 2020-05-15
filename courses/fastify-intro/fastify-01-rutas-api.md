@@ -6,15 +6,20 @@ descargar algúna herramienta API como [Postman](https://www.postman.com/downloa
 
 Vamos a utilizar el script que creamos en la lección pasada.
 
+### Reinicio de Node.js
+
+Para detener el proceso de una aplicación Node.js en la terminal puedes utilizar en tu teclado la combinación `CTRL + c`, cada vez que hagas una actualización de tus archivos JS deberás detener el proceso
+e iniciarlo nuevamente.
+
 ## GET
 
 Este método lo utilizamos en la lección pasada con la instancia de Fastify, para esta lección vamos a realizar
-rutas para manejar libros.
+rutas para listar libros.
 
 ```js
 // Agregar después de la ruta /
 
-server.get("/books", (request, reply) => {
+server.get("/books", function (request, reply) {
   //  Tambien podemos regresar un array que se va a convertir en JSON
   reply.send([
     "El laberinto de la soledad",
@@ -30,8 +35,12 @@ Para declarar parametros dinamicos como algún `id` o un `slug` utilizamos la s
 de la función handler los podemos obtener dentro del `request.params`:
 
 ```js
-server.get('/book/:id', (request, reply) => {
-  //  Sinónimo de const id = request.params.id;
+server.get('/book/:id', function (request, reply) {
+  /*
+    Como es un objeto podemos usar la deestructuracion
+    como si fuera
+    const id = request.params.id
+  */
   const { id } = request.params;
 
   reply.send({
@@ -46,10 +55,10 @@ la respuesta incluye el mensaje con el id consultado.
 ### Query params
 
 ¿Qué pasa si queremos leer parametros desde la URL? Dentro del mismo request podemos obtener los query params como
-un objeto así como los `request.params` con la propiedad `request.query` vamos a modificar un poco la URL `/books`
+un objeto así como los `request.params` con la propiedad `request.query`, vamos a modificar un poco la URL `/books`
 
 ```js
-server.get("/books", (request, reply) => {
+server.get("/books", function (request, reply) {
   //  Vamos a guardar todos nuestros libros en una variable
   const books = [
     "El laberinto de la soledad",
@@ -79,7 +88,7 @@ de datos. En una petición POST dentro de `request` podemos obtener los parámet
 `request.body`.
 
 ```js
-server.post("/book", (request, reply) => {
+server.post("/book", function (request, reply) {
   //  Obtenemos los datos de nombre y autor del libro
   const { name, author } = request.body;
 
@@ -100,7 +109,7 @@ PUT al igual que la POST recibe le propiedad `request.body`, puedes también rec
 quieras realizar la modificación en algún `id` en especifico.
 
 ```js
-server.put("/book/:id", (request, reply) => {
+server.put("/book/:id", function (request, reply) {
   const { id } = request.params;
 
   //  Obtenemos los datos de nombre y autor del libro
@@ -124,7 +133,7 @@ PUT, usualmente DELETE utiliza `request.query` para obtener parametros adicional
 `request.params`.
 
 ```js
-server.delete("/book/:id", (request, reply) => {
+server.delete("/book/:id", function (request, reply) {
   const { id } = request.params;
 
   //  Si necesitas datos adicionales puedes utilizar query
@@ -146,13 +155,7 @@ const fastify = require("fastify");
 
 const server = fastify();
 
-server.get("/", (request, reply) => {
-  reply.send({
-    message: "Fastify works",
-  });
-});
-
-server.get("/books", (request, reply) => {
+server.get("/books", function (request, reply) {
   //  Vamos a guardar todos nuestros libros en una variable
   const books = [
     "El laberinto de la soledad",
@@ -170,7 +173,7 @@ server.get("/books", (request, reply) => {
   reply.send(filteredBooks);
 });
 
-server.get("/book/:id", (request, reply) => {
+server.get("/book/:id", function (request, reply) {
   //  Sinónimo de const id = request.params.id;
   const { id } = request.params;
 
@@ -179,7 +182,7 @@ server.get("/book/:id", (request, reply) => {
   });
 });
 
-server.post("/book", (request, reply) => {
+server.post("/book", function (request, reply) {
   //  Obtenemos los datos de nombre y autor del libro
   const { name, author } = request.body;
 
@@ -189,7 +192,7 @@ server.post("/book", (request, reply) => {
   });
 });
 
-server.put("/book/:id", (request, reply) => {
+server.put("/book/:id", function (request, reply) {
   const { id } = request.params;
 
   //  Obtenemos los datos de nombre y autor del libro
@@ -202,7 +205,7 @@ server.put("/book/:id", (request, reply) => {
   });
 });
 
-server.delete("/book/:id", (request, reply) => {
+server.delete("/book/:id", function (request, reply) {
   const { id } = request.params;
 
   //  Si necesitas datos adicionales puedes utilizar query
@@ -213,7 +216,7 @@ server.delete("/book/:id", (request, reply) => {
   });
 });
 
-server.listen(3000, (err) => {
+server.listen(3000, function (err) {
   if (err) {
     console.error(err);
     process.exit(0);

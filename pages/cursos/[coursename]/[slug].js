@@ -3,7 +3,6 @@ import Head from "next/head";
 import Link from "next/link";
 import dayjs from "dayjs";
 import ArtisanFront from "../../../layouts/ArtisanFront";
-import matter from "gray-matter";
 import CodeBlock from "../../../components/CodeBlock";
 import ReactMarkdown from "react-markdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -92,9 +91,7 @@ CourseLessonPage.getInitialProps = async ({ query, res }) => {
 
   const {
     default: content,
-  } = require(`../../../courses/${courseData.folder}/${lesson.file}.md`);
-
-  const data = matter(content);
+  } = await require(`../../../courses/${courseData.folder}/${lesson.file}.md`);
 
   const prevLesson = lessonIndex > 0 ? allLessons[lessonIndex - 1] : null;
   const nextLesson =
@@ -102,7 +99,7 @@ CourseLessonPage.getInitialProps = async ({ query, res }) => {
 
   return {
     lesson,
-    markDown: data.content,
+    markDown: content,
     courseData,
     prevLesson,
     nextLesson,

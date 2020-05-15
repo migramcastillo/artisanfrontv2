@@ -1,7 +1,7 @@
 # Middlewares y Plugins - Fastify desde 0
 
-Puede haber un poco de confusión en cuanto a este tema de Middlewares en Fastify, de forma resumida _no existen los Middlewares
-en Fastify_ sin embargo mediante un plugin se pueden "adaptar" los middlewares de Express para su uso en Fastify.
+Puede haber un poco de confusión en cuanto a este tema de Middlewares en Fastify, de forma resumida **no existen los Middlewares
+en Fastify** sin embargo mediante un plugin se pueden "adaptar" los middlewares de Express para su uso en Fastify.
 Aunque hoy en día ya es fácil encontrar algún plugin que pueda sustituir de una forma mucho más optimizada los
 middlewares de Express.
 
@@ -10,23 +10,24 @@ middlewares de Express.
 En Fastify hay alternativas para solucionar especificamente los problemas que resuelven los middlewares. Entre
 esas soluciones podemos mencionar las siguientes:
 
-- ¿Requieres cambiar el comportamiento de todas las rutas de tu aplicación, agregar sesiones, agregar cookies o CORS?
+- **¿Requieres cambiar el comportamiento de todas las rutas de tu aplicación, agregar sesiones, agregar cookies o CORS?**
   La solución es mediante plugins.
-- ¿Quieres ejecutar código cómo validación personalizada de campos, validación del token mediante otra llamda API?
-  La solución es utilizando algún hook como 'preHandler' o 'preValidation' como vimos en lecciones anteriores.
+- **¿Quieres ejecutar código cómo validación personalizada de campos, validación del token mediante otra llamda API?**
+  La solución es utilizando algún hook como `preHandler` o `preValidation` como vimos en lecciones anteriores.
 
-## Primer uso de plugins, rutas separadas
+## Primer uso de plugins: rutas separadas
 
 Antes de explicar lo que es el contexto creado por `register` vamos a ver uno de los usos más simples que se puede
-hacer con esta propiedad: separar rutas por archivos y colocar sufijos.
+hacer con esta propiedad: separar rutas por archivos y colocar prefijos de ruta.
 
-Vamos a crear un archivo llamado `routes.js`con el siguiente contenido:
+Vamos a crear un archivo llamado `routes.js` con el siguiente contenido:
 
 ```js
 async function myRoutes(fastify, options) {
   fastify.get("/", (request, reply) => {
     reply.send({
       message: "Fastify works",
+      token: request.token,
     });
   });
 
@@ -96,7 +97,7 @@ module.exports = myRoutes;
 ```
 
 Lo que hicimos fue declarar todas las rutas usadas en lecciones anteriores dentro de una función que recibe
-2 parámetros, la instancia de Fastify y las opciones como segundo argumento. Notarás que utilizamos una función
+2 argumentos, la instancia de Fastify y las opciones como segundo argumento. Notarás que utilizamos una función
 `async`, al igual que en los hooks, podemos declarar el plugin de forma normal y utilizando el tercer argumento
 `done` para especificar el fin de la ejecución de la función. A toda esta función vamos a conocerla como un `context`,
 ahora lo que haremos es importar este módulo en nuestro script principal y declararlo como plugin.
@@ -113,7 +114,7 @@ server.register(require("./routes.js"));
 server.listen(3000, (err) => {
   if (err) {
     console.error(err);
-    process.exit(0);
+    process.exit(1);
   }
 
   console.log("Fastify corriendo en el puerto 3000");
@@ -131,21 +132,21 @@ server.register(require("./routes.js"), { prefix: "/api" });
 
 Ahora todas nuestras rutas declaradas en `routes.js` tendrán el prefijo `/api`.
 
-## ¿Qué es el context?
+## ¿Qué es el contexto?
 
 Supongamos que en routes.js quieres declarar un hook en general para todas las rutas, el hook `preHandler`
 para validar que el usuario debe tener un token para entrar a todas estas rutas, sin afectar las rutas que están
-en raíz ni las de otros archivos de rutas. El context en los plugins nos permite tener este comportamiento,
-todo decorator y todo hook que declares dentro del plugin sólo afectará a las rutas declaradas dentro del mismo archivo.
+en raíz ni las de otros archivos de rutas. El contexto en los plugins nos permite tener este comportamiento,
+**todo decorator y todo hook que declares dentro del plugin sólo afectará a las rutas declaradas dentro del mismo archivo**.
 
 ```js
 async function myRoutes(fastify, options) {
-  //  Este decorator y hook sólo afectará a las rutas en este archivo o mejor dicho en este context
-  fastify.addDecoratorRequest("token", "");
+  //  Este decorator y hook sólo afectará a las rutas en este archivo o mejor dicho en este contexto
+  fastify.decorateRequest("token", "");
 
   fastify.addHook("preHandler", async (request, reply) => {
     try {
-      const token = request.header("Authorization");
+      const token = request.headers["authorization"];
 
       await validateToken(token);
       request.token = token;
@@ -173,7 +174,7 @@ como `routes.js`
 const fastify = require("fastify");
 const server = fastify();
 
-//  Este hook si afectará a las rutas en routes.js porque fue declarado en el context padre
+//  Este hook si afectará a las rutas en routes.js porque fue declarado en el contexto padre
 server.addHook("preValidation", (request, reply, done) => {
   done();
 });
@@ -184,7 +185,7 @@ server.register(require("./routes.js"));
 server.listen(3000, (err) => {
   if (err) {
     console.error(err);
-    process.exit(0);
+    process.exit(1);
   }
 
   console.log("Fastify corriendo en el puerto 3000");
@@ -193,9 +194,9 @@ server.listen(3000, (err) => {
 
 ## Plugins creados con fastify-plugin
 
-Ahora que conoces el concepto de context te preguntarás, si los decorators y hooks declarados dentro del plugin
+Ahora que conoces el concepto de contexto te preguntarás, **si los decorators y hooks declarados dentro del plugin
 sólo afectan al plugin ¿Cómo es que los plugins como `fastify-cors` y `fastify-cookie` pueden afectar a toda la
-aplicación? La respuesta es el módulo `fastify-plugin`. Este módulo permite que los plugins puedan reflejar sus hooks
+aplicación?** La respuesta es el módulo `fastify-plugin`. Este módulo permite que los plugins puedan reflejar sus hooks
 y decorators en el contexto principal, en este curso no vamos a profundizar en como crear plugins mediante `fastify-plugin`
 en la documentación oficial hay muy buenos recursos en inglés para ver más a detalle como crear un plugin.
 
@@ -244,13 +245,13 @@ server.register(require("fastify-cors"), {
   origin: false,
 });
 
-//  Ahora nuestras rutas son un plugin!
-server.register(require("./routes.js"));
+//  Ahora nuestras rutas son un plugin con el prefijo /api
+server.register(require("./routes.js"), { prefix: "/api" });
 
 server.listen(3000, (err) => {
   if (err) {
     console.error(err);
-    process.exit(0);
+    process.exit(1);
   }
 
   console.log("Fastify corriendo en el puerto 3000");

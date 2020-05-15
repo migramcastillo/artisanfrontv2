@@ -1,11 +1,10 @@
 # Archivos Estáticos - Fastify desde 0
 
-Por defecto Fastify no puede enviar archivos HTML como respuestas en `reply` pero con un plugin oficial de
+Por defecto Fastify no puede enviar archivos HTML como respuestas en `reply`, pero con un plugin oficial de
 Fastify podemos servir archivos estáticos como HTML, Imagenes, CSS y Javascript. Vamos en esta lección a configurar
 nuestro web server para dar respuestas HTML.
 
-Nota: En producción no es recomendable servir archivos estáticos con NodeJS sin un proxy reverso como Nginx.
-(En este artículo puedes ver más detalles al respecto)[https://carlosazaustre.es/como-configurar-nginx-con-node-js-en-produccion]
+**Nota:** En producción no es recomendable servir archivos estáticos con NodeJS sin un proxy reverso como Nginx. La configuración de Nginx como proxy reverso está fuera del alcance de este curso pero [en este artículo puedes ver más detalles al respecto](https://carlosazaustre.es/como-configurar-nginx-con-node-js-en-produccion)
 
 ## Instalación
 
@@ -98,12 +97,12 @@ Ejecutamos nuestra aplicación con:
 node index.js
 ```
 
-Y en un navegador navegamos a (http://localhost:3000)[http://localhost:3000] para ver nuestro archivo
+Y en un navegador entramos a [http://localhost:3000](http://localhost:3000) para ver nuestro archivo
 HTML servido.
 
 ## Agregando CSS, imagenes y Javascript
 
-Dentro de la misma carpeta `public` vamos a colcoar una imagen, una de tu preferencia. También
+Dentro de la misma carpeta `public` vamos a colocar una imagen, una de tu preferencia. También
 vamos a colocar un archivo `css` con el siguiente contenido:
 
 ```css
@@ -144,7 +143,7 @@ Ahora vamos a modificar nuestro HTML para leer estos archivos:
 Recuerda que si en la configuración del plugin utilizaste otro prefix, este lo debes colocar también
 en las etiquetas `src` y `href` para solicitar tus archivos estáticos.
 
-Probamos nuevamente en (http://localhost:3000)[http://localhost:3000] y debemos ver tanto la imagen, como
+Probamos nuevamente en [http://localhost:3000](http://localhost:3000) y debemos ver tanto la imagen, como
 el alert y el estilo tan feo que aplicamos a nuestro HTML.
 
 ## Pagina 404

@@ -36,6 +36,7 @@ CourseIndexPage.getInitialProps = async (ctx) => {
     author: courseData.author,
     timestamp: courseData.timestamp,
     courseSlug: courseData.slug,
+    description: "",
   }));
 
   return {

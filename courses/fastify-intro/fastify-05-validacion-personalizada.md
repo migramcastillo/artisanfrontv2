@@ -44,6 +44,9 @@ server.post("/book", {
 Muy bien con esto ya validamos que debemos recibir esos campos, no obstante el campo release debería ser una fecha
 y debería ser inferior o igual a la fecha actual, vamos a hacer uso del `preHandler` hook para esto.
 
+**Nota**: Observarás que cambiamos un poco la sintaxis de `handler` para en vez de usar `function` utilicemos
+una `arrow function () => {}` no hay mayor inconveniente utilizando ambas sintaxis, pero de ahora en adelante utilizaremos **arrow functions** en los hooks y handlers para simplificar el código.
+
 ```js
 server.post("/book", {
   schema: {
@@ -95,10 +98,9 @@ Otro detalle nuevo que estamos viendo son las dos primeras sentencias if estan r
 el código 400 detallando el error por el cual esta solicitud es invalida, como no llegamos a ejecutar ninguna
 función `done()` el ciclo de vida se detiene ahi con la última respuesta de este preHandler.
 
-Nota: Puedes utilizar reply.code también en tus handlers si quieres retornar un error u otró código de respuesta
-válida. Por defecto el código es siempre 200.
+**Nota:** Puedes utilizar reply.code también en tus handlers si quieres retornar un error u otró código de respuesta válida, por defecto el código es siempre 200. No olvides declarar `done()` si no lo haces Fastify
+no podrá saber que debe continuar en el ciclo de vida y tu aplicación se quedará estancada en ese punto.
 
 ## Validación avanzada con JSON Schema
 
-La validación con Schemas personalizados Ajv y schemas compartidos va a quedar fuera del alcance de este curso. Voy
-a crear un artículo y un video especial a futuro para mostrar como hacer este tipo de validaciones.
+La validación con Schemas personalizados Ajv y schemas compartidos va a quedar fuera del alcance de este curso. Voy a crear un artículo y un video especial a futuro para mostrar como hacer este tipo de validaciones.

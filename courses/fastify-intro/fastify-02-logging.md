@@ -8,7 +8,7 @@ de errores o alertas que puede mandar la aplicación, la clasificación de tus m
 de estar en un ambiente en producción puedas solamente mostrar mensajes importantes y en ambiente de desarrollo
 mensajes menos importantes e incluso puedes guardar tus logs en un archivo separado para consultarlos después.
 
-## Activar el Pino logging
+## Activar Pino logging
 
 Para activar Pino Logger, solamente debemos declararlo en la instancia de Fastify de la siguiente forma en `index.js`:
 
@@ -20,28 +20,28 @@ const server = fastify({
 });
 
 //  Nuestra ruta de prueba
-server.get("/", (request, reply) => {
+server.get("/", function (request, reply) {
   reply.send({
     message: "Fastify works",
   });
 });
 
-server.listen(3000, (err) => {
+server.listen(3000, function (err) {
   if (err) {
     console.error(err);
-    process.exit(0);
+    process.exit(1);
   }
 });
 ```
 
 Si te das cuenta en la parte de `listen` ahora no colocamos un console.log que nos diga que la aplicación
-esta corriendo. Vamos a dejar que el logger se encarge de eso, una vez que corras la aplicación con
+esta corriendo. Vamos a dejar que el logger se encarge de eso, una vez que ejecutes la aplicación con:
 
 ```sh
 node index.js
 ```
 
-Al momento de correr la aplicación deberas ver un mensaje parecido a este en la consola:
+Al momento de correr la aplicación deberás ver un mensaje parecido a este en la consola:
 
 ```sh
 {"level":30,"time":1586702279807,"pid":16219,"hostname":"Mi hostname","msg":"Server listening at http://127.0.0.1:3000","v":1}
@@ -61,13 +61,13 @@ Pino Logger cuenta con los siguientes niveles de log, ordenados desde el más im
 - debug
 - trace
 
-Es importante tener en cuenta el nivel de logger, sólo se van logs de igual o mayor importancia al nivel
-establecido, ejemplo:
+Es importante tener en cuenta el nivel de logger, **sólo se van a observar logs de igual o mayor importancia al nivel
+establecido**, ejemplo:
 
 - Si estableces el nivel `warn` sólo se mostrarán logs de nivel warn, error y fatal.
 - Si estableces el nivel `trace` se mostrarán los logs de nivel trace, debug, info, warn, error y fatal.
 
-Para cambiar este nivel, en vez de enviar el valor `true` a `logger` le mandaremos un objeto:
+Para cambiar este nivel, en vez de enviar el valor `true` a `logger` los configuraremos como un objeto:
 
 ```js
 const fastify = require("fastify");
@@ -88,7 +88,7 @@ Ademas de los logs generados automaticamente por Fastify, tu puedes enviar logs 
 en las rutas declaradas, por ejemplo para la ruta `/` vamos a enviar un log `warn` y un log `error`
 
 ```js
-server.get("/", (request, reply) => {
+server.get("/", function (request, reply) {
   //  Se envia un log utilizando request con su propiedad log seguido del nivel de log que se quiere enviar
   request.log.warn("Soy un log warn");
   request.log.error("Soy un log error");
@@ -100,6 +100,9 @@ server.get("/", (request, reply) => {
 
 Sólo un argumento se acepta en las funciones log y puede ser un string o un objeto el cual automaticamente se
 va a convertir a string. Recuerda que sólo los logs del mismo nivel o superior van a mostrarse.
+
+Reinicia tu aplicación e intenta cambiar el `level` del logger a `error` para observar como el log de nivel `warn` no se
+envía.
 
 ## Formatear logs
 

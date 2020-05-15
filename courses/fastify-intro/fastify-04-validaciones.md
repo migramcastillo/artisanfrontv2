@@ -1,17 +1,17 @@
 # Validaciones - Fastify desde 0
 
-Fastify utiliza validaciones de Schema mediante librerias llamdas JSON Schema y Ajv. Esto quiere decir que
+Fastify utiliza validaciones de Schema mediante una libreria llamada [Ajv](https://ajv.js.org/). Esto quiere decir que
 nostros definimos los nombres de las propiedades que se reciben, el tipo de valor que debe tener esa propiedad
 y algunos parámetros adicionales como valores mínimos y valores máximos.
 
 Antes de continuar debemos saber que nuestras rutas pueden recibir como segundo argumento la función handler, pero
 también pueden recibir un objeto que son las opciones de la ruta, dentro de esas opciones podemos definir los hooks
-que vimos en la lección pasada, el handler y los schemas que aplican a esa ruta.
+que vimos en la lección pasada, el handler y los **schemas** que aplican a esa ruta.
 
 ## Definiendo un Schema
 
 Vamos a comenzar con una petición POST donde es más común ver las validaciones, continuando con los
-libros vamos a validar que cuando se quiere insertar un nuevo libro sean necesarios los campos de Autor
+libros vamos a validar que cuando se quiera crear un nuevo libro sean necesarios los campos de Autor
 y de Nombre de la siguiente forma:
 
 ```js
@@ -26,7 +26,7 @@ server.post("/book", {
       },
     },
   },
-  handler: (request, reply) => {
+  handler: function (request, reply) {
     const { name, author } = request.body;
     reply.send({
       name: `El libro se llama ${name}`,
@@ -71,13 +71,13 @@ A continuación se definen algunos de los tipos disponibles para las propiedades
   - `bool`: Para un valor booleano.
 
 En el caso del ejemplo lo que queremos son 2 propiedades llamadas `author` y `name`, cada una debe ser de tipo string
-y ambar son requeridas.
+y ambas son requeridas.
 
 ## Probando mi schema
 
 Con ayuda de Postman o tu herramienta de API test favorita vamos a enviar un solicitud sin ningúna propiedad
-en el body a la ruta `/book`. Observaras que nuestra aplicación va a responder con un error 400 porque no detecta
-el body como un objeto, ahora vamos a sólo mandar el campo author, también deberiamos recibir un error 400 con
+en el body a la ruta `/book`. Observaras que nuestra aplicación va a responder con un **error 400** porque no detecta
+el body como un objeto, ahora vamos a sólo mandar el campo **author**, también deberiamos recibir un error 400 con
 los siguientes datos:
 
 ```json

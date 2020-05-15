@@ -1,6 +1,5 @@
 import Head from "next/head";
 import ArtisanFront from "../layouts/ArtisanFront";
-import HomeArticles from "../components/HomeArticles/HomeArticles";
 import ViewAllButton from "../components/view-all-button";
 import { getLastArticles } from "../helpers/get-articles";
 import i18n from "../locales/home.i18n";

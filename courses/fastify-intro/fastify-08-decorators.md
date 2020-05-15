@@ -11,7 +11,7 @@ server.get("/books", {
   preHandler: async (request, reply) => {
     try {
       //  Obtenemos el token enviado en las cabeceras
-      const token = request.headers("Authorization");
+      const token = request.headers["authorization"];
 
       //  Vamos a simular que obtenemos datos a partir del token
       const userData = await getUserData(token);
@@ -52,7 +52,7 @@ server.get("/books", {
       //  Vamos a simular que obtenemos datos a partir del token
       const userData = await getUserData(token);
 
-      // Con el decorator ahora si esto es correcto
+      // Con el decorator ahora esto si es correcto
       request.user = userData.name;
 
       return;
@@ -71,9 +71,11 @@ server.get("/books", {
 });
 ```
 
+**Nota:** En el demo simulamos `getUserData` como una promesa.
+
 ## ¿Para qué sirven los decorators?
 
-Los decorators permiten agregar campos adicionales a nuestro request, reply o server sin afectar la optimización llevada a cabo
+Los decorators permiten agregar campos adicionales a nuestro `request`, `reply` o `server` sin afectar la optimización llevada a cabo
 por Fastify, el uso más común de los decorators es al momento de utilizar los `plugins` de Fastify para
 agregar nuevas funcionalidades dentro de todas nuestras rutas, por ejemplo el plugin `fastify-cookie` nos
 genera decorators para asignar cookies, obtener valos de una cookie y eliminar cookies en todas nuestras rutas.
@@ -121,15 +123,15 @@ server.hasReplyDecorator("replyUtil");
 ## Nota acerca de los decorator
 
 No se puede definir más de una vez el mismo decorator, esto provocará automaticamente que la aplicación mande
-un error, sin embargo si se define un nuevo context de Fastify, dentro de ese context se pueden definir decorators
+un error, sin embargo si se define un nuevo **contexto** de Fastify, dentro de ese **contexto** se pueden definir decorators
 con el mismo nombre, veremos esto más a detalle en la lección de plugins.
 
 ## Decorators en la práctica
 
-El siguiente fragmento de código muestra una parte del plugin de cookies de Fastify:
+El siguiente fragmento de código muestra una parte del [plugin de cookies de Fastify](https://github.com/fastify/fastify-cookie/blob/master/plugin.js):
 
 ```js
-// Fragmento de plugin.js en fastify-cookie
+// Fragmento de plugin.js en fastify-cookie, línea 53
 
 fastify.decorateRequest("cookies", {});
 
@@ -150,7 +152,7 @@ fastify.decorateReply("clearCookie", function clearCookieWrapper(
 ```
 
 Lo que hace el plugin de cookies es declarar decoradores con valores guardados o con funciones que se van
-a ejecutar. Al configurar este `plugin` tendremos disponibles aquellos métodos en nuestro `reply` y `request``
+a ejecutar. Al configurar este `plugin` tendremos disponibles aquellos métodos en nuestro `reply` y `request`.
 
 ```js
 server.get("/logout", (request, reply) => {

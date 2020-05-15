@@ -6,7 +6,6 @@ import {
   getArticleBySlug,
   getArticleDataByKey,
 } from "../../helpers/get-articles";
-import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 
 export const ArticlePage = ({ article, markDown }) => {
@@ -47,11 +46,9 @@ ArticlePage.getInitialProps = async ({ query, res }) => {
 
   const { default: content } = require(`../../articles/${articleData.file}.md`);
 
-  const data = matter(content);
-
   return {
     article: articleData,
-    markDown: data.content,
+    markDown: content,
   };
 };
 

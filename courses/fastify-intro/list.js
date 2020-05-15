@@ -141,7 +141,7 @@ export default [
     description: "Testing en Fastify, configurar node-tap como suite de test",
   },
   {
-    title: "Testing 2/2 - Fastify Inject",
+    title: "Testing 2/2 - Tests API Firebase",
     file: "fastify-16-testing-2-de-2",
     github:
       "https://github.com/migramcastillo/curso-fastify-ejemplos/tree/master/13-testing",

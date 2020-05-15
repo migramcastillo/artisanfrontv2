@@ -11,6 +11,9 @@ body {
 .article h2 {
   @apply text-2xl text-gray-800 antialiased py-2;
 }
+.article h3 {
+  @apply text-xl text-gray-800 antialiased py-2;
+}
 .article p {
   @apply text-base text-gray-700 py-3;
 }

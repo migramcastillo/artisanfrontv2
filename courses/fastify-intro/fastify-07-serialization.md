@@ -2,7 +2,7 @@
 
 Serialization es el proceso que utiliza Fastify para dar forma al body que se retorna al usuario cuando se
 utiliza `reply.send`, al igual que en las validaciones, dentro de `schema` se puede definir el schema de
-el body que se le va a retornar al usuario dependiendo del código de respuesta, la manipulación de la serialización
+el **response** que se le va a entregar al usuario dependiendo del código de respuesta, la manipulación de la serialización
 puede ayudarnos a evitar que se envien datos innecesarios.
 
 ## Definir esquemas de serialización

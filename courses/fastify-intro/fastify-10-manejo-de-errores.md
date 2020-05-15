@@ -8,10 +8,10 @@ y conocer su manejo. En Fastify tenemos los siguientes puntos en cuanto al manej
 - Errores de ejecución dentro de nuestros handlers como errores de sintaxis van a retornar una respuesta JSON con código 500.
 - Por defecto las validaciones de schemas que no cumplan los requisitos son retornadas con el detalle de validación
   y un código de error 400.
-- En cuanto a promesas y solicitudes asincronas, es nuestra responsabilidad capturar los errores, una excepeción
-  no capturada finalizará la ejecución de nuestra aplicación.
+- En cuanto a promesas y solicitudes asincronas, es nuestra responsabilidad capturar los errores, **un error de promesa
+  no capturado finalizará la ejecución de nuestra aplicación.**
 - Como se ha mostrado en los hooks, podemos retornar peticiones con códigos de errores 400 o 500 en algún hook
-  de forma manual dentro de un bloque try/catch.
+  de forma manual dentro de un bloque `try/catch`.
 - Podemos manejar los errores de todo un contexto mediante la propiedad `setErrorHandler`.
 - Podemos manejar los errores de rutas no encontradas mediante la propiedad `setNotFoundHandler`.
 
@@ -34,7 +34,7 @@ server.get("/", (request, reply) => {
 });
 ```
 
-Podemos observar que `enviarError` es una promesa que siempre enviará error, como no hemos capturado el error de
+Podemos observar que `enviarError` es una promesa que siempre enviará error (¿Quién lo diria?), como no hemos capturado el error de
 la promesa mediante `.catch()` vamos a causar un error en la aplicación de tipo `UnhandledPromiseRejectionWarning`
 el cual sólo vamos a poder ver en la consola pero el usuario sólo tendrá como respuesta un tiempo de espera indefinido.
 
@@ -67,7 +67,6 @@ server.get("/", async (request, reply) => {
     reply.send({
       message: "Mi mensaje",
     });
-    return;
   } catch (error) {
     request.log.error(error);
     reply.code(500).send({
@@ -80,7 +79,7 @@ server.get("/", async (request, reply) => {
 ## setErrorHandler
 
 Esta propiedad se encarga de especificar la función que se llamará en caso de que se genere algún error en
-las solicitudes que no haya sido manejado, se define por contexto o en general para la aplicación por lo que puedes
+las solicitudes que no haya sido manejado, **se puede definir por contexto** o en general para la aplicación por lo que puedes
 utilizar diferentes errorHandlers en diferentes grupos de rutas. Toma en cuenta que también los errores
 generados por solicitudes que no cumplen con el schema serán manejados en esta función.
 
