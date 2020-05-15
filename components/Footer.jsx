@@ -21,13 +21,28 @@ const Footer = () => {
           </Link>
         </nav>
         <nav className="flex text-xl py-2 items-center justify-around lg:flex-1 lg:justify-center">
-          <a className="lg:px-4">
+          <a
+            href="https://github.com/migramcastillo"
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+            className="lg:px-4"
+          >
             <FontAwesomeIcon icon={["fab", "github"]} />
           </a>
-          <a className="lg:px-4">
+          <a
+            href="https://www.youtube.com/channel/UCXVLIO_2DX0LxXK7AexKL3g"
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+            className="lg:px-4"
+          >
             <FontAwesomeIcon icon={["fab", "youtube"]} />
           </a>
-          <a className="lg:px-4">
+          <a
+            href="https://twitter.com/migramcastillo"
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+            className="lg:px-4"
+          >
             <FontAwesomeIcon icon={["fab", "twitter"]} />
           </a>
         </nav>

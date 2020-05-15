@@ -29,8 +29,17 @@ const CourseLessonPage = ({
   return (
     <ArtisanFront>
       <Head>
-        <title>{lesson.title}</title>
+        <title>
+          {lesson.title} - {courseData.title}
+        </title>
         <meta name="description" content={lesson.description} />
+        <meta
+          property="og:url"
+          content={`https://www.artisanfront.com/cursos/${courseData.slug}/${lesson.file}`}
+        />
+        <meta property="og:title" content={`${lesson.title} - Artisan Front`} />
+        <meta property="og:description" content={lesson.description} />
+        <meta property="og:image" content={`/${courseData.bgImage}`} />
       </Head>
       <article className="container mx-auto py-4 px-4 sm:px-2 md:px-1 lg:px-0 article">
         <p>

@@ -2,7 +2,7 @@ import ArtisanFront from "../../layouts/ArtisanFront";
 import ArticleCard from "../../components/ArticleCard/ArticleCard";
 import { getAllArticles } from "../../helpers/get-articles";
 
-const ArticlesMainPage = ({ articles, ...props }) => {
+const ArticlesMainPage = ({ articles }) => {
   return (
     <ArtisanFront>
       <div className="container mx-auto p-2">
@@ -16,6 +16,11 @@ const ArticlesMainPage = ({ articles, ...props }) => {
             placeholder="Busca algún artículo en especifico o tag"
           />
         </form>
+        {articles.length === 0 && (
+          <p className="text-gray-900 text-lg text-center my-2">
+            Aún no hay artículos redactados
+          </p>
+        )}
         <div className="flex flex-col md:flex-row md:flex-wrap md:justify-center">
           {articles.map((art) => {
             return (

@@ -1,4 +1,4 @@
-import relation from "../articles/relation.json";
+import relation from "../articles/relation";
 import dayjs from "dayjs";
 
 export const getAllArticles = () => {

@@ -1,10 +1,25 @@
 import ArtisanFront from "../../../layouts/ArtisanFront";
 import { getCourseBySlug } from "../../../helpers/get-courses";
 import CardLesson from "../../../components/CardLesson/CardLesson";
+import Head from "next/head";
 
 export const CourseIndexPage = ({ courseData, lessonsList }) => {
   return (
     <ArtisanFront>
+      <Head>
+        <title>{courseData.title} - Artisan Front</title>
+        <meta name="description" content={courseData.description} />
+        <meta
+          property="og:url"
+          content={`https://www.artisanfront.com/cursos/${courseData.slug}`}
+        />
+        <meta
+          property="og:title"
+          content={`${courseData.title} - Artisan Front`}
+        />
+        <meta property="og:description" content={courseData.description} />
+        <meta property="og:image" content={`/${courseData.bgImage}`} />
+      </Head>
       <div className="container mx-auto p-2">
         <h1 className="text-2xl font-semibold py-4 text-gray-900 text-center">
           {courseData.title}

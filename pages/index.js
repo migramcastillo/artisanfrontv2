@@ -12,6 +12,9 @@ const HomePage = ({ lang, labels, hreflangs, articles, courses }) => {
       <Head>
         <title>Artisan Front - {labels.title}</title>
         <meta name="description" content={labels.description} />
+        <meta property="og:url" content="https://www.artisanfront.com" />
+        <meta property="og:title" content={`Artisan Front - ${labels.title}`} />
+        <meta property="og:description" content={labels.description} />
       </Head>
       <div className="container mx-auto p-2">
         <h1 className="text-center text-3xl font-semibold text-gray-900 my-4">
@@ -25,13 +28,17 @@ const HomePage = ({ lang, labels, hreflangs, articles, courses }) => {
           <ViewAllButton href="/cursos" />
         </div>
 
-        <h2 className="text-2xl text-center text-gray-800 font-bold mb-6 mt-12">
-          Últimos artículos
-        </h2>
-        <HomeListing listing={articles} kind="article" />
-        <div className="py-4">
-          <ViewAllButton href="/articulos" />
-        </div>
+        {articles.legnt > 0 && (
+          <>
+            <h2 className="text-2xl text-center text-gray-800 font-bold mb-6 mt-12">
+              Últimos artículos
+            </h2>
+            <HomeListing listing={articles} kind="article" />
+            <div className="py-4">
+              <ViewAllButton href="/articulos" />
+            </div>
+          </>
+        )}
       </div>
     </ArtisanFront>
   );
